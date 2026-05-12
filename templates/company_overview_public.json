@@ -1,0 +1,71 @@
+{
+  "template_name": "company_overview_public",
+  "display_name": "Public Company Overview",
+  "description": "Analyzer for public company overviews, annual reports, one-pagers, and business summaries.",
+  "document_type": "public company overview",
+  "fields": [
+    {
+      "name": "organization_name",
+      "label": "Organization name",
+      "required": true,
+      "description": "Company or organization name."
+    },
+    {
+      "name": "website",
+      "label": "Website",
+      "required": false,
+      "description": "Company website or public URL."
+    },
+    {
+      "name": "industry_or_sector",
+      "label": "Industry or sector",
+      "required": true,
+      "description": "Industry, market, or sector."
+    },
+    {
+      "name": "product_or_service",
+      "label": "Product or service",
+      "required": true,
+      "description": "What the organization builds, sells, or provides."
+    },
+    {
+      "name": "target_market",
+      "label": "Target market",
+      "required": true,
+      "description": "Customers, users, buyers, or beneficiaries."
+    },
+    {
+      "name": "traction_or_progress",
+      "label": "Traction or progress",
+      "required": true,
+      "description": "Revenue, customers, pilots, partnerships, grants, milestones, or validation."
+    },
+    {
+      "name": "funding_or_support",
+      "label": "Funding or support",
+      "required": false,
+      "description": "Funding, grants, awards, accelerators, or support mentioned."
+    },
+    {
+      "name": "team_or_leadership",
+      "label": "Team or leadership",
+      "required": true,
+      "description": "Founders, executives, team members, advisors, or key people."
+    },
+    {
+      "name": "risks_or_missing_info",
+      "label": "Risks or missing information",
+      "required": true,
+      "description": "Unclear, missing, or weak information in the document."
+    }
+  ],
+  "report_sections": [
+    "Organization Overview",
+    "Product/Service",
+    "Market",
+    "Traction",
+    "Team",
+    "Visual Evidence",
+    "Missing Information"
+  ]
+}

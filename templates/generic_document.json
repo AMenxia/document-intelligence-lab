@@ -1,0 +1,57 @@
+{
+  "template_name": "generic_document",
+  "display_name": "Generic Document",
+  "description": "General-purpose extraction for any document.",
+  "document_type": "generic document",
+  "fields": [
+    {
+      "name": "document_title",
+      "label": "Document title",
+      "required": true,
+      "description": "Main title or name of the document."
+    },
+    {
+      "name": "primary_topic",
+      "label": "Primary topic",
+      "required": true,
+      "description": "Main subject of the document."
+    },
+    {
+      "name": "purpose",
+      "label": "Purpose",
+      "required": false,
+      "description": "Why the document exists."
+    },
+    {
+      "name": "important_dates",
+      "label": "Important dates",
+      "required": false,
+      "description": "Deadlines, publication dates, event dates, or milestones."
+    },
+    {
+      "name": "key_requirements",
+      "label": "Key requirements",
+      "required": false,
+      "description": "Requirements, instructions, or must-do items."
+    },
+    {
+      "name": "important_contacts",
+      "label": "Important contacts",
+      "required": false,
+      "description": "People, emails, phone numbers, or organizations to contact."
+    },
+    {
+      "name": "risks_or_missing_info",
+      "label": "Risks or missing information",
+      "required": false,
+      "description": "Unclear, missing, or risky information."
+    }
+  ],
+  "report_sections": [
+    "Overview",
+    "Key Details",
+    "Visual Evidence",
+    "Missing or Unclear Information",
+    "Next Steps"
+  ]
+}

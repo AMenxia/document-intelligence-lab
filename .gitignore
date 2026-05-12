@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+runs/*
+!runs/.gitkeep
+data/private/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

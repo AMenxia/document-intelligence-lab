@@ -1,0 +1,9 @@
+streamlit>=1.36.0
+docling
+pymupdf
+pillow
+pandas
+python-dotenv
+requests
+xlsxwriter
+PyYAML

@@ -1,0 +1,57 @@
+{
+  "template_name": "event_flyer",
+  "display_name": "Event Flyer / Poster",
+  "description": "Extracts event details from flyers, posters, and announcements.",
+  "document_type": "event flyer",
+  "fields": [
+    {
+      "name": "event_name",
+      "label": "Event name",
+      "required": true,
+      "description": "Name of the event."
+    },
+    {
+      "name": "date_and_time",
+      "label": "Date and time",
+      "required": true,
+      "description": "Date, start time, end time, or schedule."
+    },
+    {
+      "name": "location",
+      "label": "Location",
+      "required": true,
+      "description": "Physical or virtual location."
+    },
+    {
+      "name": "host_or_organizer",
+      "label": "Host or organizer",
+      "required": false,
+      "description": "Organization, group, or person hosting."
+    },
+    {
+      "name": "cost_or_registration",
+      "label": "Cost or registration",
+      "required": false,
+      "description": "Price, RSVP, registration link, or ticket details."
+    },
+    {
+      "name": "target_audience",
+      "label": "Target audience",
+      "required": false,
+      "description": "Who the event is for."
+    },
+    {
+      "name": "contact_or_link",
+      "label": "Contact or link",
+      "required": false,
+      "description": "URL, QR code text, email, phone, or social handle."
+    }
+  ],
+  "report_sections": [
+    "Event Overview",
+    "Key Details",
+    "Registration",
+    "Visual Evidence",
+    "Missing Information"
+  ]
+}
