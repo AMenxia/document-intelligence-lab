@@ -1,0 +1,487 @@
+[
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0056",
+    "table_id": "doc_002_table_001",
+    "page_no": 6,
+    "bbox": {
+      "left": 109.2145004272461,
+      "top": 665.2310943603516,
+      "right": 300.9962463378906,
+      "bottom": 578.3787994384766,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0056_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_001_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_001_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_001_raw.html",
+    "raw_markdown": "|             | Model          |   NQ | TQA             |   WQ | CT   |\n|:------------|:---------------|-----:|:----------------|-----:|:-----|\n| Closed Book | T5-11B [52]    | 34.5 | - /50.1 - /60.5 | 37.4 | - -  |\n|             | T5-11B+SSM[52] | 36.6 |                 | 44.7 |      |\n| Open        | REALM [20]     | 40.4 | - / -           | 40.7 | 46.8 |\n| Book        | DPR [26]       | 41.5 | 57.9 / -        | 41.1 | 50.6 |\n|             | RAG-Token      | 44.1 | 55.2/66.1       | 45.5 | 50.0 |\n|             | RAG-Seq.       | 44.5 | 56.8/ 68.0      | 45.2 | 52.2 |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 1: Open-Domain QA Test Scores. For TQA, left column uses the standard test set for OpenDomain QA, right column uses the TQA-Wiki test set. See Appendix D for further details.</div></caption><tbody><tr><td></td><th>Model</th><th>NQ</th><th>TQA</th><th>WQ</th><th>CT</th></tr><tr><th>Closed Book</th><td>T5-11B [52]</td><td>34.5</td><td>- /50.1 - /60.5</td><td>37.4</td><td>- -</td></tr><tr><td></td><td>T5-11B+SSM[52]</td><td>36.6</td><td></td><td>44.7</td><td></td></tr><tr><th>Open</th><td>REALM [20]</td><td>40.4</td><td>- / -</td><td>40.7</td><td>46.8</td></tr><tr><th>Book</th><td>DPR [26]</td><td>41.5</td><td>57.9 / -</td><td>41.1</td><td>50.6</td></tr><tr><td></td><td>RAG-Token</td><td>44.1</td><td>55.2/66.1</td><td>45.5</td><td>50.0</td></tr><tr><td></td><td>RAG-Seq.</td><td>44.5</td><td>56.8/ 68.0</td><td>45.2</td><td>52.2</td></tr></tbody></table>",
+    "columns": [
+      "",
+      "Model",
+      "NQ",
+      "TQA",
+      "WQ",
+      "CT"
+    ],
+    "rows": [
+      {
+        "column_1": "Closed Book",
+        "Model": "T5-11B [52]",
+        "NQ": "34.5",
+        "TQA": "- /50.1 - /60.5",
+        "WQ": "37.4",
+        "CT": "- -"
+      },
+      {
+        "column_1": "",
+        "Model": "T5-11B+SSM[52]",
+        "NQ": "36.6",
+        "TQA": "",
+        "WQ": "44.7",
+        "CT": ""
+      },
+      {
+        "column_1": "Open",
+        "Model": "REALM [20]",
+        "NQ": "40.4",
+        "TQA": "- / -",
+        "WQ": "40.7",
+        "CT": "46.8"
+      },
+      {
+        "column_1": "Book",
+        "Model": "DPR [26]",
+        "NQ": "41.5",
+        "TQA": "57.9 / -",
+        "WQ": "41.1",
+        "CT": "50.6"
+      },
+      {
+        "column_1": "",
+        "Model": "RAG-Token",
+        "NQ": "44.1",
+        "TQA": "55.2/66.1",
+        "WQ": "45.5",
+        "CT": "50.0"
+      },
+      {
+        "column_1": "",
+        "Model": "RAG-Seq.",
+        "NQ": "44.5",
+        "TQA": "56.8/ 68.0",
+        "WQ": "45.2",
+        "CT": "52.2"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0058",
+    "table_id": "doc_002_table_002",
+    "page_no": 6,
+    "bbox": {
+      "left": 310.73834228515625,
+      "top": 656.8029632568359,
+      "right": 502.09393310546875,
+      "bottom": 578.3497924804688,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0058_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_002_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_002_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_002_raw.html",
+    "raw_markdown": "| Model.Model       | Jeopardy.B-1   | Jeopardy.QB-1   | MSMARCO.R-L   | MSMARCO.B-1   |   FVR3.Label | FVR2 Acc..Label   |\n|:------------------|:---------------|:----------------|:--------------|:--------------|-------------:|:------------------|\n| SotA              | -              | -               | 49.8 *        | 49.9 *        |         76.8 | 92.2 *            |\n| BART              | 15.1           | 19.7            | 38.2          | 41.6          |         64   | 81.1              |\n| RAG-Tok. RAG-Seq. | 17.3           | 22.2            | 40.1          | 41.5          |         72.5 | 89.5              |\n|                   | 14.7           | 21.4            | 40.8          | 44.2          |         72.5 | 89.5              |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 2: Generation and classification Test Scores. MS-MARCO SotA is [4], FEVER-3 is [68] and FEVER-2 is [57] *Uses gold context/evidence. Best model without gold access underlined.</div></caption><tbody><tr><th rowspan=\"2\">Model</th><th colspan=\"2\">Jeopardy</th><th colspan=\"2\">MSMARCO</th><th>FVR3</th><th>FVR2 Acc.</th></tr><tr><th>B-1</th><th>QB-1</th><th>R-L</th><th>B-1</th><th colspan=\"2\">Label</th></tr><tr><td>SotA</td><td>-</td><td>-</td><td>49.8 *</td><td>49.9 *</td><td>76.8</td><td>92.2 *</td></tr><tr><td>BART</td><td>15.1</td><td>19.7</td><td>38.2</td><td>41.6</td><td>64.0</td><td>81.1</td></tr><tr><td>RAG-Tok. RAG-Seq.</td><td>17.3</td><td>22.2</td><td>40.1</td><td>41.5</td><td rowspan=\"2\">72.5</td><td rowspan=\"2\">89.5</td></tr><tr><td></td><td>14.7</td><td>21.4</td><td>40.8</td><td>44.2</td></tr></tbody></table>",
+    "columns": [
+      "Model.Model",
+      "Jeopardy.B-1",
+      "Jeopardy.QB-1",
+      "MSMARCO.R-L",
+      "MSMARCO.B-1",
+      "FVR3.Label",
+      "FVR2 Acc..Label"
+    ],
+    "rows": [
+      {
+        "Model.Model": "SotA",
+        "Jeopardy.B-1": "-",
+        "Jeopardy.QB-1": "-",
+        "MSMARCO.R-L": "49.8 *",
+        "MSMARCO.B-1": "49.9 *",
+        "FVR3.Label": "76.8",
+        "FVR2 Acc..Label": "92.2 *"
+      },
+      {
+        "Model.Model": "BART",
+        "Jeopardy.B-1": "15.1",
+        "Jeopardy.QB-1": "19.7",
+        "MSMARCO.R-L": "38.2",
+        "MSMARCO.B-1": "41.6",
+        "FVR3.Label": "64.0",
+        "FVR2 Acc..Label": "81.1"
+      },
+      {
+        "Model.Model": "RAG-Tok. RAG-Seq.",
+        "Jeopardy.B-1": "17.3",
+        "Jeopardy.QB-1": "22.2",
+        "MSMARCO.R-L": "40.1",
+        "MSMARCO.B-1": "41.5",
+        "FVR3.Label": "72.5",
+        "FVR2 Acc..Label": "89.5"
+      },
+      {
+        "Model.Model": "",
+        "Jeopardy.B-1": "14.7",
+        "Jeopardy.QB-1": "21.4",
+        "MSMARCO.R-L": "40.8",
+        "MSMARCO.B-1": "44.2",
+        "FVR3.Label": "72.5",
+        "FVR2 Acc..Label": "89.5"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0070",
+    "table_id": "doc_002_table_003",
+    "page_no": 7,
+    "bbox": {
+      "left": 109.37548828125,
+      "top": 573.4823150634766,
+      "right": 499.80841064453125,
+      "bottom": 441.2829284667969,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0070_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_003_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_003_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_003_raw.html",
+    "raw_markdown": "| Task                           | Input                            | Model            | Generation                                                                                                                                                                                                                                  |\n|:-------------------------------|:---------------------------------|:-----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| MS- MARCO                      | define middle ear                | BART RAG-T RAG-S | ? The middle ear is the part of the ear between the middle ear and the nose. The middle ear is the portion of the ear internal to the eardrum. The middle ear includes the tympanic cavity and the three ossicles.                          |\n| MS- MARCO                      | what currency needed in scotland | BART RAG-T RAG-S | The currency needed in Scotland is Pound sterling. Pound is the currency needed in Scotland. The currency needed in Scotland is the pound sterling.                                                                                         |\n| Jeopardy Question Gener -ation | Washington                       | BART RAG-T RAG-S | ? This state has the largest number of counties in the U.S. It's the only U.S. state named for a U.S. president It's the state where you'll find Mount Rainier National Park                                                                |\n| Jeopardy Question Gener -ation | The Divine Comedy                | BART RAG-T RAG-S | * This epic poem by Dante is divided into 3 parts: the Inferno, the Purgatorio &the Purgatorio Dante's \"Inferno\" is the first part of this epic poem This 14th century work is divided into 3 sections: \"Inferno\", \"Purgatorio\" &\"Paradiso\" |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 3: Examples from generation tasks. RAG models generate more specific and factually accurate responses. &#x27;?&#x27; indicates factually incorrect responses, * indicates partially correct responses.</div></caption><tbody><tr><th>Task</th><th>Input</th><th>Model</th><th>Generation</th></tr><tr><td rowspan=\"2\">MS- MARCO</td><td>define middle ear</td><td>BART RAG-T RAG-S</td><td>? The middle ear is the part of the ear between the middle ear and the nose. The middle ear is the portion of the ear internal to the eardrum. The middle ear includes the tympanic cavity and the three ossicles.</td></tr><tr><td>what currency needed in scotland</td><td>BART RAG-T RAG-S</td><td>The currency needed in Scotland is Pound sterling. Pound is the currency needed in Scotland. The currency needed in Scotland is the pound sterling.</td></tr><tr><td rowspan=\"2\">Jeopardy Question Gener -ation</td><td>Washington</td><td>BART RAG-T RAG-S</td><td>? This state has the largest number of counties in the U.S. It&#x27;s the only U.S. state named for a U.S. president It&#x27;s the state where you&#x27;ll find Mount Rainier National Park</td></tr><tr><td>The Divine Comedy</td><td>BART RAG-T RAG-S</td><td>* This epic poem by Dante is divided into 3 parts: the Inferno, the Purgatorio &amp;the Purgatorio Dante&#x27;s &quot;Inferno&quot; is the first part of this epic poem This 14th century work is divided into 3 sections: &quot;Inferno&quot;, &quot;Purgatorio&quot; &amp;&quot;Paradiso&quot;</td></tr></tbody></table>",
+    "columns": [
+      "Task",
+      "Input",
+      "Model",
+      "Generation"
+    ],
+    "rows": [
+      {
+        "Task": "MS- MARCO",
+        "Input": "define middle ear",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "? The middle ear is the part of the ear between the middle ear and the nose. The middle ear is the portion of the ear internal to the eardrum. The middle ear includes the tympanic cavity and the three ossicles."
+      },
+      {
+        "Task": "MS- MARCO",
+        "Input": "what currency needed in scotland",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "The currency needed in Scotland is Pound sterling. Pound is the currency needed in Scotland. The currency needed in Scotland is the pound sterling."
+      },
+      {
+        "Task": "Jeopardy Question Gener -ation",
+        "Input": "Washington",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "? This state has the largest number of counties in the U.S. It's the only U.S. state named for a U.S. president It's the state where you'll find Mount Rainier National Park"
+      },
+      {
+        "Task": "Jeopardy Question Gener -ation",
+        "Input": "The Divine Comedy",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "* This epic poem by Dante is divided into 3 parts: the Inferno, the Purgatorio &the Purgatorio Dante's \"Inferno\" is the first part of this epic poem This 14th century work is divided into 3 sections: \"Inferno\", \"Purgatorio\" &\"Paradiso\""
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0078",
+    "table_id": "doc_002_table_004",
+    "page_no": 8,
+    "bbox": {
+      "left": 126.45038604736328,
+      "top": 686.7304916381836,
+      "right": 283.0819091796875,
+      "bottom": 614.7623291015625,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0078_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_004_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_004_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_004_raw.html",
+    "raw_markdown": "|             | Factuality   | Specificity   |\n|:------------|:-------------|:--------------|\n| BART better | 7.1%         | 16.8%         |\n| RAG better  | 42.7%        | 37.4%         |\n| Both good   | 11.7%        | 11.8%         |\n| Both poor   | 17.7%        | 6.9%          |\n| No majority | 20.8%        | 20.1%         |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 4: Human assessments for the Jeopardy Question Generation Task.</div></caption><tbody><tr><td></td><th>Factuality</th><th>Specificity</th></tr><tr><th>BART better</th><td>7.1%</td><td>16.8%</td></tr><tr><th>RAG better</th><td>42.7%</td><td>37.4%</td></tr><tr><th>Both good</th><td>11.7%</td><td>11.8%</td></tr><tr><th>Both poor</th><td>17.7%</td><td>6.9%</td></tr><tr><th>No majority</th><td>20.8%</td><td>20.1%</td></tr></tbody></table>",
+    "columns": [
+      "",
+      "Factuality",
+      "Specificity"
+    ],
+    "rows": [
+      {
+        "column_1": "BART better",
+        "Factuality": "7.1%",
+        "Specificity": "16.8%"
+      },
+      {
+        "column_1": "RAG better",
+        "Factuality": "42.7%",
+        "Specificity": "37.4%"
+      },
+      {
+        "column_1": "Both good",
+        "Factuality": "11.7%",
+        "Specificity": "11.8%"
+      },
+      {
+        "column_1": "Both poor",
+        "Factuality": "17.7%",
+        "Specificity": "6.9%"
+      },
+      {
+        "column_1": "No majority",
+        "Factuality": "20.8%",
+        "Specificity": "20.1%"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0080",
+    "table_id": "doc_002_table_005",
+    "page_no": 8,
+    "bbox": {
+      "left": 309.5849914550781,
+      "top": 682.1633987426758,
+      "right": 503.6162109375,
+      "bottom": 619.9367370605469,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0080_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_005_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_005_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_005_raw.html",
+    "raw_markdown": "|           | MSMARCO   | Jeopardy QGen   |\n|:----------|:----------|:----------------|\n| Gold      | 89.6%     | 90.0%           |\n| BART      | 70.7%     | 32.4%           |\n| RAG-Token | 77.8%     | 46.8%           |\n| RAG-Seq.  | 83.5%     | 53.8%           |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 5: Ratio of distinct to total tri-grams for generation tasks.</div></caption><tbody><tr><td></td><th>MSMARCO</th><th>Jeopardy QGen</th></tr><tr><th>Gold</th><td>89.6%</td><td>90.0%</td></tr><tr><th>BART</th><td>70.7%</td><td>32.4%</td></tr><tr><th>RAG-Token</th><td>77.8%</td><td>46.8%</td></tr><tr><th>RAG-Seq.</th><td>83.5%</td><td>53.8%</td></tr></tbody></table>",
+    "columns": [
+      "",
+      "MSMARCO",
+      "Jeopardy QGen"
+    ],
+    "rows": [
+      {
+        "column_1": "Gold",
+        "MSMARCO": "89.6%",
+        "Jeopardy QGen": "90.0%"
+      },
+      {
+        "column_1": "BART",
+        "MSMARCO": "70.7%",
+        "Jeopardy QGen": "32.4%"
+      },
+      {
+        "column_1": "RAG-Token",
+        "MSMARCO": "77.8%",
+        "Jeopardy QGen": "46.8%"
+      },
+      {
+        "column_1": "RAG-Seq.",
+        "MSMARCO": "83.5%",
+        "Jeopardy QGen": "53.8%"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0083",
+    "table_id": "doc_002_table_006",
+    "page_no": 8,
+    "bbox": {
+      "left": 107.11054992675781,
+      "top": 577.5243530273438,
+      "right": 516.2279663085938,
+      "bottom": 476.4998779296875,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0083_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_006_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_006_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_006_raw.html",
+    "raw_markdown": "| Model.              |   NQ. |   TQA.Exact Match |   WQ.Exact Match |   CT. |   Jeopardy-QGen.B-1 |   Jeopardy-QGen.QB-1 |   MSMarco.R-L |   MSMarco.B-1 | FVR-3.Label Accuracy   | FVR-2.Label Accuracy   |\n|:--------------------|------:|------------------:|-----------------:|------:|--------------------:|---------------------:|--------------:|--------------:|:-----------------------|:-----------------------|\n| RAG-Token-BM25      |  29.7 |              41.5 |             32.1 |  33.1 |                17.5 |                 22.3 |          55.5 |          48.4 | 75.1                   | 91.6                   |\n| RAG-Sequence-BM25   |  31.8 |              44.1 |             36.6 |  33.8 |                11.1 |                 19.5 |          56.5 |          46.9 |                        |                        |\n| RAG-Token-Frozen    |  37.8 |              50.1 |             37.1 |  51.1 |                16.7 |                 21.7 |          55.9 |          49.4 | 72.9                   | 89.4                   |\n| RAG-Sequence-Frozen |  41.2 |              52.1 |             41.8 |  52.6 |                11.8 |                 19.6 |          56.7 |          47.3 |                        |                        |\n| RAG-Token           |  43.5 |              54.8 |             46.5 |  51.9 |                17.9 |                 22.6 |          56.2 |          49.4 | 74.5                   | 90.6                   |\n| RAG-Sequence        |  44   |              55.8 |             44.9 |  53.4 |                15.3 |                 21.5 |          57.2 |          47.5 |                        |                        |",
+    "raw_html": "<table><tbody><tr><th>Model</th><th>NQ</th><th>TQA</th><th>WQ</th><th>CT</th><th colspan=\"2\">Jeopardy-QGen</th><th colspan=\"2\">MSMarco</th><th>FVR-3</th><th>FVR-2</th></tr><tr><td></td><td></td><th colspan=\"2\">Exact Match</th><td></td><th>B-1</th><th>QB-1</th><th>R-L</th><th>B-1</th><th colspan=\"2\">Label Accuracy</th></tr><tr><th>RAG-Token-BM25</th><td>29.7</td><td>41.5</td><td>32.1</td><td>33.1</td><td>17.5</td><td>22.3</td><td>55.5</td><td>48.4</td><td>75.1</td><td>91.6</td></tr><tr><th>RAG-Sequence-BM25</th><td>31.8</td><td>44.1</td><td>36.6</td><td>33.8</td><td>11.1</td><td>19.5</td><td>56.5</td><td>46.9</td><td></td><td></td></tr><tr><th>RAG-Token-Frozen</th><td>37.8</td><td>50.1</td><td>37.1</td><td>51.1</td><td>16.7</td><td>21.7</td><td>55.9</td><td>49.4</td><td>72.9</td><td>89.4</td></tr><tr><th>RAG-Sequence-Frozen</th><td>41.2</td><td>52.1</td><td>41.8</td><td>52.6</td><td>11.8</td><td>19.6</td><td>56.7</td><td>47.3</td><td></td><td></td></tr><tr><th>RAG-Token</th><td>43.5</td><td>54.8</td><td>46.5</td><td>51.9</td><td>17.9</td><td>22.6</td><td>56.2</td><td>49.4</td><td>74.5</td><td>90.6</td></tr><tr><th>RAG-Sequence</th><td>44.0</td><td>55.8</td><td>44.9</td><td>53.4</td><td>15.3</td><td>21.5</td><td>57.2</td><td>47.5</td><td></td><td></td></tr></tbody></table>",
+    "columns": [
+      "Model.",
+      "NQ.",
+      "TQA.Exact Match",
+      "WQ.Exact Match",
+      "CT.",
+      "Jeopardy-QGen.B-1",
+      "Jeopardy-QGen.QB-1",
+      "MSMarco.R-L",
+      "MSMarco.B-1",
+      "FVR-3.Label Accuracy",
+      "FVR-2.Label Accuracy"
+    ],
+    "rows": [
+      {
+        "Model.": "RAG-Token-BM25",
+        "NQ.": "29.7",
+        "TQA.Exact Match": "41.5",
+        "WQ.Exact Match": "32.1",
+        "CT.": "33.1",
+        "Jeopardy-QGen.B-1": "17.5",
+        "Jeopardy-QGen.QB-1": "22.3",
+        "MSMarco.R-L": "55.5",
+        "MSMarco.B-1": "48.4",
+        "FVR-3.Label Accuracy": "75.1",
+        "FVR-2.Label Accuracy": "91.6"
+      },
+      {
+        "Model.": "RAG-Sequence-BM25",
+        "NQ.": "31.8",
+        "TQA.Exact Match": "44.1",
+        "WQ.Exact Match": "36.6",
+        "CT.": "33.8",
+        "Jeopardy-QGen.B-1": "11.1",
+        "Jeopardy-QGen.QB-1": "19.5",
+        "MSMarco.R-L": "56.5",
+        "MSMarco.B-1": "46.9",
+        "FVR-3.Label Accuracy": "",
+        "FVR-2.Label Accuracy": ""
+      },
+      {
+        "Model.": "RAG-Token-Frozen",
+        "NQ.": "37.8",
+        "TQA.Exact Match": "50.1",
+        "WQ.Exact Match": "37.1",
+        "CT.": "51.1",
+        "Jeopardy-QGen.B-1": "16.7",
+        "Jeopardy-QGen.QB-1": "21.7",
+        "MSMarco.R-L": "55.9",
+        "MSMarco.B-1": "49.4",
+        "FVR-3.Label Accuracy": "72.9",
+        "FVR-2.Label Accuracy": "89.4"
+      },
+      {
+        "Model.": "RAG-Sequence-Frozen",
+        "NQ.": "41.2",
+        "TQA.Exact Match": "52.1",
+        "WQ.Exact Match": "41.8",
+        "CT.": "52.6",
+        "Jeopardy-QGen.B-1": "11.8",
+        "Jeopardy-QGen.QB-1": "19.6",
+        "MSMarco.R-L": "56.7",
+        "MSMarco.B-1": "47.3",
+        "FVR-3.Label Accuracy": "",
+        "FVR-2.Label Accuracy": ""
+      },
+      {
+        "Model.": "RAG-Token",
+        "NQ.": "43.5",
+        "TQA.Exact Match": "54.8",
+        "WQ.Exact Match": "46.5",
+        "CT.": "51.9",
+        "Jeopardy-QGen.B-1": "17.9",
+        "Jeopardy-QGen.QB-1": "22.6",
+        "MSMarco.R-L": "56.2",
+        "MSMarco.B-1": "49.4",
+        "FVR-3.Label Accuracy": "74.5",
+        "FVR-2.Label Accuracy": "90.6"
+      },
+      {
+        "Model.": "RAG-Sequence",
+        "NQ.": "44.0",
+        "TQA.Exact Match": "55.8",
+        "WQ.Exact Match": "44.9",
+        "CT.": "53.4",
+        "Jeopardy-QGen.B-1": "15.3",
+        "Jeopardy-QGen.QB-1": "21.5",
+        "MSMarco.R-L": "57.2",
+        "MSMarco.B-1": "47.5",
+        "FVR-3.Label Accuracy": "",
+        "FVR-2.Label Accuracy": ""
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0193",
+    "table_id": "doc_002_table_007",
+    "page_no": 19,
+    "bbox": {
+      "left": 172.41233825683594,
+      "top": 698.0461883544922,
+      "right": 437.1000061035156,
+      "bottom": 595.5354614257812,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0193_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_007_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_007_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_007_raw.html",
+    "raw_markdown": "| Task                         |   Train |   Development | Test    |\n|:-----------------------------|--------:|--------------:|:--------|\n| Natural Questions            |   79169 |          8758 | 3611    |\n| TriviaQA                     |   78786 |          8838 | 11314   |\n| WebQuestions                 |    3418 |           362 | 2033    |\n| CuratedTrec                  |     635 |           134 | 635     |\n| Jeopardy Question Generation |   97392 |         13714 | 26849   |\n| MS-MARCO                     |  153726 |         12468 | 101093* |\n| FEVER-3-way                  |  145450 |         10000 | 10000   |\n| FEVER-2-way                  |   96966 |          6666 | 6666    |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 7: Number of instances in the datasets used. *A hidden subset of this data is used for evaluation</div></caption><tbody><tr><td>Task</td><th>Train</th><th>Development</th><th>Test</th></tr><tr><th>Natural Questions</th><td>79169</td><td>8758</td><td>3611</td></tr><tr><th>TriviaQA</th><td>78786</td><td>8838</td><td>11314</td></tr><tr><th>WebQuestions</th><td>3418</td><td>362</td><td>2033</td></tr><tr><th>CuratedTrec</th><td>635</td><td>134</td><td>635</td></tr><tr><th>Jeopardy Question Generation</th><td>97392</td><td>13714</td><td>26849</td></tr><tr><th>MS-MARCO</th><td>153726</td><td>12468</td><td>101093*</td></tr><tr><th>FEVER-3-way</th><td>145450</td><td>10000</td><td>10000</td></tr><tr><th>FEVER-2-way</th><td>96966</td><td>6666</td><td>6666</td></tr></tbody></table>",
+    "columns": [
+      "Task",
+      "Train",
+      "Development",
+      "Test"
+    ],
+    "rows": [
+      {
+        "Task": "Natural Questions",
+        "Train": "79169",
+        "Development": "8758",
+        "Test": "3611"
+      },
+      {
+        "Task": "TriviaQA",
+        "Train": "78786",
+        "Development": "8838",
+        "Test": "11314"
+      },
+      {
+        "Task": "WebQuestions",
+        "Train": "3418",
+        "Development": "362",
+        "Test": "2033"
+      },
+      {
+        "Task": "CuratedTrec",
+        "Train": "635",
+        "Development": "134",
+        "Test": "635"
+      },
+      {
+        "Task": "Jeopardy Question Generation",
+        "Train": "97392",
+        "Development": "13714",
+        "Test": "26849"
+      },
+      {
+        "Task": "MS-MARCO",
+        "Train": "153726",
+        "Development": "12468",
+        "Test": "101093*"
+      },
+      {
+        "Task": "FEVER-3-way",
+        "Train": "145450",
+        "Development": "10000",
+        "Test": "10000"
+      },
+      {
+        "Task": "FEVER-2-way",
+        "Train": "96966",
+        "Development": "6666",
+        "Test": "6666"
+      }
+    ]
+  }
+]

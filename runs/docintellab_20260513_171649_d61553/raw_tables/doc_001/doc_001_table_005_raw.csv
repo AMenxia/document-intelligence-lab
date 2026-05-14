@@ -1,0 +1,14 @@
+Training on,labels,Testing on.PLN,Testing on.DB,Testing on.DLN
+PubLayNet (PLN),Figure,96,43,23
+PubLayNet (PLN),Sec-header,87,-,32
+,Table,95,24,49
+,Text,96,-,42
+,total,93,34,30
+DocBank (DB),Figure,77,71,31
+DocBank (DB),Table,19,65,22
+DocBank (DB),total,48,68,27
+DocLayNet (DLN),Figure,67,51,72
+DocLayNet (DLN),Sec-header,53,-,68
+,Table,87,43,82
+,Text,77,-,84
+,total,59,47,78

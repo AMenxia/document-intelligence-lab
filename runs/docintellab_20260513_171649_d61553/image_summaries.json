@@ -1,0 +1,18 @@
+[
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0086",
+    "visual_id": "doc_002_visual_003",
+    "page_no": 8,
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0086_picture.png",
+    "human_note": "",
+    "visual_type": "unknown",
+    "summary": "VLM analysis failed.",
+    "visible_text": [],
+    "importance": "unclear",
+    "issues": [
+      "Expecting value: line 1 column 1 (char 0)"
+    ]
+  }
+]

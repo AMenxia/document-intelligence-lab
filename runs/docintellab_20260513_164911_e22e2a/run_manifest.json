@@ -1,0 +1,29 @@
+{
+  "documents": [
+    {
+      "doc_id": "doc_001",
+      "file_name": "doclaynet_document_layout_analysis.pdf",
+      "source_path": "runs\\docintellab_20260513_164911_e22e2a\\input\\doclaynet_document_layout_analysis.pdf",
+      "raw_docling_md_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_001\\raw_docling.md",
+      "raw_docling_json_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_001\\raw_docling.json",
+      "outlined_pdf_path": "runs\\docintellab_20260513_164911_e22e2a\\outlined_pdfs\\doclaynet_document_layout_analysis_outlined.pdf",
+      "layout_items_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_001\\layout_items.json",
+      "raw_tables_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_001\\raw_tables.json",
+      "visual_items_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_001\\visual_items.json"
+    },
+    {
+      "doc_id": "doc_002",
+      "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+      "source_path": "runs\\docintellab_20260513_164911_e22e2a\\input\\rag_knowledge_intensive_nlp_tasks.pdf",
+      "raw_docling_md_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_002\\raw_docling.md",
+      "raw_docling_json_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_002\\raw_docling.json",
+      "outlined_pdf_path": "runs\\docintellab_20260513_164911_e22e2a\\outlined_pdfs\\rag_knowledge_intensive_nlp_tasks_outlined.pdf",
+      "layout_items_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_002\\layout_items.json",
+      "raw_tables_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_002\\raw_tables.json",
+      "visual_items_path": "runs\\docintellab_20260513_164911_e22e2a\\parsed\\doc_002\\visual_items.json"
+    }
+  ],
+  "layout_items_path": "runs\\docintellab_20260513_164911_e22e2a\\layout_items.json",
+  "raw_tables_path": "runs\\docintellab_20260513_164911_e22e2a\\raw_tables.json",
+  "visual_items_path": "runs\\docintellab_20260513_164911_e22e2a\\visual_items.json"
+}

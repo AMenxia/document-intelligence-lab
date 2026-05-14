@@ -1,0 +1,5 @@
+Model.Model,Jeopardy.B-1,Jeopardy.QB-1,MSMARCO.R-L,MSMARCO.B-1,FVR3.Label,FVR2 Acc..Label
+SotA,-,-,49.8 *,49.9 *,76.8,92.2 *
+BART,15.1,19.7,38.2,41.6,64.0,81.1
+RAG-Tok. RAG-Seq.,17.3,22.2,40.1,41.5,72.5,89.5
+,14.7,21.4,40.8,44.2,72.5,89.5

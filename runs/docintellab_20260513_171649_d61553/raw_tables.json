@@ -1,0 +1,1163 @@
+[
+  {
+    "doc_id": "doc_001",
+    "file_name": "doclaynet_document_layout_analysis.pdf",
+    "item_id": "doc_001_item_0055",
+    "table_id": "doc_001_table_001",
+    "page_no": 4,
+    "bbox": {
+      "left": 98.77970886230469,
+      "top": 654.6121063232422,
+      "right": 512.7288208007812,
+      "bottom": 498.00079345703125,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_001\\doc_001_item_0055_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_001_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_001_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_001_raw.html",
+    "raw_markdown": "| class label    |   Count |   % of Total.Train |   % of Total.Test |   % of Total.Val | triple inter-annotator mAP @0.5-0.95 (%).All   | triple inter-annotator mAP @0.5-0.95 (%).Fin   | triple inter-annotator mAP @0.5-0.95 (%).Man   | triple inter-annotator mAP @0.5-0.95 (%).Sci   | triple inter-annotator mAP @0.5-0.95 (%).Law   | triple inter-annotator mAP @0.5-0.95 (%).Pat   | triple inter-annotator mAP @0.5-0.95 (%).Ten   |\n|:---------------|--------:|-------------------:|------------------:|-----------------:|:-----------------------------------------------|:-----------------------------------------------|:-----------------------------------------------|:-----------------------------------------------|:-----------------------------------------------|:-----------------------------------------------|:-----------------------------------------------|\n| Caption        |   22524 |               2.04 |              1.77 |             2.32 | 84-89                                          | 40-61                                          | 86-92                                          | 94-99                                          | 95-99                                          | 69-78                                          | n/a                                            |\n| Footnote       |    6318 |               0.6  |              0.31 |             0.58 | 83-91                                          | n/a                                            | 100                                            | 62-88                                          | 85-94                                          | n/a                                            | 82-97                                          |\n| Formula        |   25027 |               2.25 |              1.9  |             2.96 | 83-85                                          | n/a                                            | n/a                                            | 84-87                                          | 86-96                                          | n/a                                            | n/a                                            |\n| List-item      |  185660 |              17.19 |             13.34 |            15.82 | 87-88                                          | 74-83                                          | 90-92                                          | 97-97                                          | 81-85                                          | 75-88                                          | 93-95                                          |\n| Page-footer    |   70878 |               6.51 |              5.58 |             6    | 93-94                                          | 88-90                                          | 95-96                                          | 100                                            | 92-97                                          | 100                                            | 96-98                                          |\n| Page-header    |   58022 |               5.1  |              6.7  |             5.06 | 85-89                                          | 66-76                                          | 90-94                                          | 98-100                                         | 91-92                                          | 97-99                                          | 81-86                                          |\n| Picture        |   45976 |               4.21 |              2.78 |             5.31 | 69-71                                          | 56-59                                          | 82-86                                          | 69-82                                          | 80-95                                          | 66-71                                          | 59-76                                          |\n| Section-header |  142884 |              12.6  |             15.77 |            12.85 | 83-84                                          | 76-81                                          | 90-92                                          | 94-95                                          | 87-94                                          | 69-73                                          | 78-86                                          |\n| Table          |   34733 |               3.2  |              2.27 |             3.6  | 77-81                                          | 75-80                                          | 83-86                                          | 98-99                                          | 58-80                                          | 79-84                                          | 70-85                                          |\n| Text           |  510377 |              45.82 |             49.28 |            45    | 84-86                                          | 81-86                                          | 88-93                                          | 89-93                                          | 87-92                                          | 71-79                                          | 87-95                                          |\n| Title          |    5071 |               0.47 |              0.3  |             0.5  | 60-72                                          | 24-63                                          | 50-63                                          | 94-100                                         | 82-96                                          | 68-79                                          | 24-56                                          |\n| Total          | 1107470 |          941123    |          99816    |         66531    | 82-83                                          | 71-74                                          | 79-81                                          | 89-94                                          | 86-91                                          | 71-76                                          | 68-85                                          |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 1: DocLayNet dataset overview. Along with the frequency of each class label, we present the relative occurrence (as % of row &#x27;Total&#x27;) in the train, test and validation sets. The inter-annotator agreement is computed as the mAP@0.5-0.95 metric between pairwise annotations from the triple-annotated pages, from which we obtain accuracy ranges.</div></caption><tbody><tr><td></td><td></td><th colspan=\"3\">% of Total</th><th colspan=\"7\">triple inter-annotator mAP @0.5-0.95 (%)</th></tr><tr><th>class label</th><th>Count</th><th>Train</th><th>Test</th><th>Val</th><th>All</th><th>Fin</th><th>Man</th><th>Sci</th><th>Law</th><th>Pat</th><th>Ten</th></tr><tr><th>Caption</th><td>22524</td><td>2.04</td><td>1.77</td><td>2.32</td><td>84-89</td><td>40-61</td><td>86-92</td><td>94-99</td><td>95-99</td><td>69-78</td><td>n/a</td></tr><tr><th>Footnote</th><td>6318</td><td>0.60</td><td>0.31</td><td>0.58</td><td>83-91</td><td>n/a</td><td>100</td><td>62-88</td><td>85-94</td><td>n/a</td><td>82-97</td></tr><tr><th>Formula</th><td>25027</td><td>2.25</td><td>1.90</td><td>2.96</td><td>83-85</td><td>n/a</td><td>n/a</td><td>84-87</td><td>86-96</td><td>n/a</td><td>n/a</td></tr><tr><th>List-item</th><td>185660</td><td>17.19</td><td>13.34</td><td>15.82</td><td>87-88</td><td>74-83</td><td>90-92</td><td>97-97</td><td>81-85</td><td>75-88</td><td>93-95</td></tr><tr><th>Page-footer</th><td>70878</td><td>6.51</td><td>5.58</td><td>6.00</td><td>93-94</td><td>88-90</td><td>95-96</td><td>100</td><td>92-97</td><td>100</td><td>96-98</td></tr><tr><th>Page-header</th><td>58022</td><td>5.10</td><td>6.70</td><td>5.06</td><td>85-89</td><td>66-76</td><td>90-94</td><td>98-100</td><td>91-92</td><td>97-99</td><td>81-86</td></tr><tr><th>Picture</th><td>45976</td><td>4.21</td><td>2.78</td><td>5.31</td><td>69-71</td><td>56-59</td><td>82-86</td><td>69-82</td><td>80-95</td><td>66-71</td><td>59-76</td></tr><tr><th>Section-header</th><td>142884</td><td>12.60</td><td>15.77</td><td>12.85</td><td>83-84</td><td>76-81</td><td>90-92</td><td>94-95</td><td>87-94</td><td>69-73</td><td>78-86</td></tr><tr><th>Table</th><td>34733</td><td>3.20</td><td>2.27</td><td>3.60</td><td>77-81</td><td>75-80</td><td>83-86</td><td>98-99</td><td>58-80</td><td>79-84</td><td>70-85</td></tr><tr><th>Text</th><td>510377</td><td>45.82</td><td>49.28</td><td>45.00</td><td>84-86</td><td>81-86</td><td>88-93</td><td>89-93</td><td>87-92</td><td>71-79</td><td>87-95</td></tr><tr><th>Title</th><td>5071</td><td>0.47</td><td>0.30</td><td>0.50</td><td>60-72</td><td>24-63</td><td>50-63</td><td>94-100</td><td>82-96</td><td>68-79</td><td>24-56</td></tr><tr><th>Total</th><td>1107470</td><td>941123</td><td>99816</td><td>66531</td><td>82-83</td><td>71-74</td><td>79-81</td><td>89-94</td><td>86-91</td><td>71-76</td><td>68-85</td></tr></tbody></table>",
+    "columns": [
+      "class label",
+      "Count",
+      "% of Total.Train",
+      "% of Total.Test",
+      "% of Total.Val",
+      "triple inter-annotator mAP @0.5-0.95 (%).All",
+      "triple inter-annotator mAP @0.5-0.95 (%).Fin",
+      "triple inter-annotator mAP @0.5-0.95 (%).Man",
+      "triple inter-annotator mAP @0.5-0.95 (%).Sci",
+      "triple inter-annotator mAP @0.5-0.95 (%).Law",
+      "triple inter-annotator mAP @0.5-0.95 (%).Pat",
+      "triple inter-annotator mAP @0.5-0.95 (%).Ten"
+    ],
+    "rows": [
+      {
+        "class label": "Caption",
+        "Count": "22524",
+        "% of Total.Train": "2.04",
+        "% of Total.Test": "1.77",
+        "% of Total.Val": "2.32",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "84-89",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "40-61",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "86-92",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "94-99",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "95-99",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "69-78",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "n/a"
+      },
+      {
+        "class label": "Footnote",
+        "Count": "6318",
+        "% of Total.Train": "0.60",
+        "% of Total.Test": "0.31",
+        "% of Total.Val": "0.58",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "83-91",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "n/a",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "100",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "62-88",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "85-94",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "n/a",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "82-97"
+      },
+      {
+        "class label": "Formula",
+        "Count": "25027",
+        "% of Total.Train": "2.25",
+        "% of Total.Test": "1.90",
+        "% of Total.Val": "2.96",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "83-85",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "n/a",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "n/a",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "84-87",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "86-96",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "n/a",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "n/a"
+      },
+      {
+        "class label": "List-item",
+        "Count": "185660",
+        "% of Total.Train": "17.19",
+        "% of Total.Test": "13.34",
+        "% of Total.Val": "15.82",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "87-88",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "74-83",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "90-92",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "97-97",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "81-85",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "75-88",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "93-95"
+      },
+      {
+        "class label": "Page-footer",
+        "Count": "70878",
+        "% of Total.Train": "6.51",
+        "% of Total.Test": "5.58",
+        "% of Total.Val": "6.00",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "93-94",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "88-90",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "95-96",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "100",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "92-97",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "100",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "96-98"
+      },
+      {
+        "class label": "Page-header",
+        "Count": "58022",
+        "% of Total.Train": "5.10",
+        "% of Total.Test": "6.70",
+        "% of Total.Val": "5.06",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "85-89",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "66-76",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "90-94",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "98-100",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "91-92",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "97-99",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "81-86"
+      },
+      {
+        "class label": "Picture",
+        "Count": "45976",
+        "% of Total.Train": "4.21",
+        "% of Total.Test": "2.78",
+        "% of Total.Val": "5.31",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "69-71",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "56-59",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "82-86",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "69-82",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "80-95",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "66-71",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "59-76"
+      },
+      {
+        "class label": "Section-header",
+        "Count": "142884",
+        "% of Total.Train": "12.60",
+        "% of Total.Test": "15.77",
+        "% of Total.Val": "12.85",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "83-84",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "76-81",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "90-92",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "94-95",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "87-94",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "69-73",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "78-86"
+      },
+      {
+        "class label": "Table",
+        "Count": "34733",
+        "% of Total.Train": "3.20",
+        "% of Total.Test": "2.27",
+        "% of Total.Val": "3.60",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "77-81",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "75-80",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "83-86",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "98-99",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "58-80",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "79-84",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "70-85"
+      },
+      {
+        "class label": "Text",
+        "Count": "510377",
+        "% of Total.Train": "45.82",
+        "% of Total.Test": "49.28",
+        "% of Total.Val": "45.00",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "84-86",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "81-86",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "88-93",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "89-93",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "87-92",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "71-79",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "87-95"
+      },
+      {
+        "class label": "Title",
+        "Count": "5071",
+        "% of Total.Train": "0.47",
+        "% of Total.Test": "0.30",
+        "% of Total.Val": "0.50",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "60-72",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "24-63",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "50-63",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "94-100",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "82-96",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "68-79",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "24-56"
+      },
+      {
+        "class label": "Total",
+        "Count": "1107470",
+        "% of Total.Train": "941123",
+        "% of Total.Test": "99816",
+        "% of Total.Val": "66531",
+        "triple inter-annotator mAP @0.5-0.95 (%).All": "82-83",
+        "triple inter-annotator mAP @0.5-0.95 (%).Fin": "71-74",
+        "triple inter-annotator mAP @0.5-0.95 (%).Man": "79-81",
+        "triple inter-annotator mAP @0.5-0.95 (%).Sci": "89-94",
+        "triple inter-annotator mAP @0.5-0.95 (%).Law": "86-91",
+        "triple inter-annotator mAP @0.5-0.95 (%).Pat": "71-76",
+        "triple inter-annotator mAP @0.5-0.95 (%).Ten": "68-85"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_001",
+    "file_name": "doclaynet_document_layout_analysis.pdf",
+    "item_id": "doc_001_item_0080",
+    "table_id": "doc_001_table_002",
+    "page_no": 6,
+    "bbox": {
+      "left": 61.68092346191406,
+      "top": 596.6961059570312,
+      "right": 285.6695556640625,
+      "bottom": 440.363525390625,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_001\\doc_001_item_0080_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_002_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_002_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_002_raw.html",
+    "raw_markdown": "|                | human.   |   MRCNN.R50 |   MRCNN.R101 |   FRCNN.R101 |   YOLO.v5x6 |\n|:---------------|:---------|------------:|-------------:|-------------:|------------:|\n| Caption        | 84-89    |        68.4 |         71.5 |         70.1 |        77.7 |\n| Footnote       | 83-91    |        70.9 |         71.8 |         73.7 |        77.2 |\n| Formula        | 83-85    |        60.1 |         63.4 |         63.5 |        66.2 |\n| List-item      | 87-88    |        81.2 |         80.8 |         81   |        86.2 |\n| Page-footer    | 93-94    |        61.6 |         59.3 |         58.9 |        61.1 |\n| Page-header    | 85-89    |        71.9 |         70   |         72   |        67.9 |\n| Picture        | 69-71    |        71.7 |         72.7 |         72   |        77.1 |\n| Section-header | 83-84    |        67.6 |         69.3 |         68.4 |        74.6 |\n| Table          | 77-81    |        82.2 |         82.9 |         82.2 |        86.3 |\n| Text           | 84-86    |        84.6 |         85.8 |         85.4 |        88.1 |\n| Title          | 60-72    |        76.7 |         80.4 |         79.9 |        82.7 |\n| All            | 82-83    |        72.4 |         73.5 |         73.4 |        76.8 |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 2: Prediction performance (mAP@0.5-0.95) of object detection networks on DocLayNet test set. The MRCNN (Mask R-CNN) and FRCNN (Faster R-CNN) models with ResNet-50 or ResNet-101 backbone were trained based on the network architectures from the detectron2 model zoo (Mask R-CNN R50, R101-FPN 3x, Faster R-CNN R101-FPN 3x), with default configurations. The YOLO implementation utilized was YOLOv5x6 [13]. All models were initialised using pre-trained weights from the COCO 2017 dataset.</div></caption><tbody><tr><td></td><th>human</th><th colspan=\"2\">MRCNN</th><th>FRCNN</th><th>YOLO</th></tr><tr><td></td><td></td><th>R50</th><th>R101</th><th>R101</th><th>v5x6</th></tr><tr><th>Caption</th><td>84-89</td><td>68.4</td><td>71.5</td><td>70.1</td><td>77.7</td></tr><tr><th>Footnote</th><td>83-91</td><td>70.9</td><td>71.8</td><td>73.7</td><td>77.2</td></tr><tr><th>Formula</th><td>83-85</td><td>60.1</td><td>63.4</td><td>63.5</td><td>66.2</td></tr><tr><th>List-item</th><td>87-88</td><td>81.2</td><td>80.8</td><td>81.0</td><td>86.2</td></tr><tr><th>Page-footer</th><td>93-94</td><td>61.6</td><td>59.3</td><td>58.9</td><td>61.1</td></tr><tr><th>Page-header</th><td>85-89</td><td>71.9</td><td>70.0</td><td>72.0</td><td>67.9</td></tr><tr><th>Picture</th><td>69-71</td><td>71.7</td><td>72.7</td><td>72.0</td><td>77.1</td></tr><tr><th>Section-header</th><td>83-84</td><td>67.6</td><td>69.3</td><td>68.4</td><td>74.6</td></tr><tr><th>Table</th><td>77-81</td><td>82.2</td><td>82.9</td><td>82.2</td><td>86.3</td></tr><tr><th>Text</th><td>84-86</td><td>84.6</td><td>85.8</td><td>85.4</td><td>88.1</td></tr><tr><th>Title</th><td>60-72</td><td>76.7</td><td>80.4</td><td>79.9</td><td>82.7</td></tr><tr><th>All</th><td>82-83</td><td>72.4</td><td>73.5</td><td>73.4</td><td>76.8</td></tr></tbody></table>",
+    "columns": [
+      "",
+      "human.",
+      "MRCNN.R50",
+      "MRCNN.R101",
+      "FRCNN.R101",
+      "YOLO.v5x6"
+    ],
+    "rows": [
+      {
+        "column_1": "Caption",
+        "human.": "84-89",
+        "MRCNN.R50": "68.4",
+        "MRCNN.R101": "71.5",
+        "FRCNN.R101": "70.1",
+        "YOLO.v5x6": "77.7"
+      },
+      {
+        "column_1": "Footnote",
+        "human.": "83-91",
+        "MRCNN.R50": "70.9",
+        "MRCNN.R101": "71.8",
+        "FRCNN.R101": "73.7",
+        "YOLO.v5x6": "77.2"
+      },
+      {
+        "column_1": "Formula",
+        "human.": "83-85",
+        "MRCNN.R50": "60.1",
+        "MRCNN.R101": "63.4",
+        "FRCNN.R101": "63.5",
+        "YOLO.v5x6": "66.2"
+      },
+      {
+        "column_1": "List-item",
+        "human.": "87-88",
+        "MRCNN.R50": "81.2",
+        "MRCNN.R101": "80.8",
+        "FRCNN.R101": "81.0",
+        "YOLO.v5x6": "86.2"
+      },
+      {
+        "column_1": "Page-footer",
+        "human.": "93-94",
+        "MRCNN.R50": "61.6",
+        "MRCNN.R101": "59.3",
+        "FRCNN.R101": "58.9",
+        "YOLO.v5x6": "61.1"
+      },
+      {
+        "column_1": "Page-header",
+        "human.": "85-89",
+        "MRCNN.R50": "71.9",
+        "MRCNN.R101": "70.0",
+        "FRCNN.R101": "72.0",
+        "YOLO.v5x6": "67.9"
+      },
+      {
+        "column_1": "Picture",
+        "human.": "69-71",
+        "MRCNN.R50": "71.7",
+        "MRCNN.R101": "72.7",
+        "FRCNN.R101": "72.0",
+        "YOLO.v5x6": "77.1"
+      },
+      {
+        "column_1": "Section-header",
+        "human.": "83-84",
+        "MRCNN.R50": "67.6",
+        "MRCNN.R101": "69.3",
+        "FRCNN.R101": "68.4",
+        "YOLO.v5x6": "74.6"
+      },
+      {
+        "column_1": "Table",
+        "human.": "77-81",
+        "MRCNN.R50": "82.2",
+        "MRCNN.R101": "82.9",
+        "FRCNN.R101": "82.2",
+        "YOLO.v5x6": "86.3"
+      },
+      {
+        "column_1": "Text",
+        "human.": "84-86",
+        "MRCNN.R50": "84.6",
+        "MRCNN.R101": "85.8",
+        "FRCNN.R101": "85.4",
+        "YOLO.v5x6": "88.1"
+      },
+      {
+        "column_1": "Title",
+        "human.": "60-72",
+        "MRCNN.R50": "76.7",
+        "MRCNN.R101": "80.4",
+        "FRCNN.R101": "79.9",
+        "YOLO.v5x6": "82.7"
+      },
+      {
+        "column_1": "All",
+        "human.": "82-83",
+        "MRCNN.R50": "72.4",
+        "MRCNN.R101": "73.5",
+        "FRCNN.R101": "73.4",
+        "YOLO.v5x6": "76.8"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_001",
+    "file_name": "doclaynet_document_layout_analysis.pdf",
+    "item_id": "doc_001_item_0091",
+    "table_id": "doc_001_table_003",
+    "page_no": 7,
+    "bbox": {
+      "left": 79.97722625732422,
+      "top": 641.6188201904297,
+      "right": 267.6390075683594,
+      "bottom": 495.9632568359375,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_001\\doc_001_item_0091_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_003_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_003_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_003_raw.html",
+    "raw_markdown": "| Class-count    |   11 | 6       | 5       | 4       |\n|:---------------|-----:|:--------|:--------|:--------|\n| Caption        |   68 | Text    | Text    | Text    |\n| Footnote       |   71 | Text    | Text    | Text    |\n| Formula        |   60 | Text    | Text    | Text    |\n| List-item      |   81 | Text    | 82      | Text    |\n| Page-footer    |   62 | 62      | -       | -       |\n| Page-header    |   72 | 68      | -       | -       |\n| Picture        |   72 | 72      | 72      | 72      |\n| Section-header |   68 | 67      | 69      | 68      |\n| Table          |   82 | 83      | 82      | 82      |\n| Text           |   85 | 84      | 84      | 84      |\n| Title          |   77 | Sec.-h. | Sec.-h. | Sec.-h. |\n| Overall        |   72 | 73      | 78      | 77      |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 3: Performance of a Mask R-CNN R50 network in mAP@0.5-0.95 scores trained on DocLayNet with different class label sets. The reduced label sets were obtained by either down-mapping or dropping labels.</div></caption><tbody><tr><td>Class-count</td><th>11</th><th>6</th><th>5</th><th>4</th></tr><tr><th>Caption</th><td>68</td><td>Text</td><td>Text</td><td>Text</td></tr><tr><th>Footnote</th><td>71</td><td>Text</td><td>Text</td><td>Text</td></tr><tr><th>Formula</th><td>60</td><td>Text</td><td>Text</td><td>Text</td></tr><tr><th>List-item</th><td>81</td><td>Text</td><td>82</td><td>Text</td></tr><tr><th>Page-footer</th><td>62</td><td>62</td><td>-</td><td>-</td></tr><tr><th>Page-header</th><td>72</td><td>68</td><td>-</td><td>-</td></tr><tr><th>Picture</th><td>72</td><td>72</td><td>72</td><td>72</td></tr><tr><th>Section-header</th><td>68</td><td>67</td><td>69</td><td>68</td></tr><tr><th>Table</th><td>82</td><td>83</td><td>82</td><td>82</td></tr><tr><th>Text</th><td>85</td><td>84</td><td>84</td><td>84</td></tr><tr><th>Title</th><td>77</td><td>Sec.-h.</td><td>Sec.-h.</td><td>Sec.-h.</td></tr><tr><th>Overall</th><td>72</td><td>73</td><td>78</td><td>77</td></tr></tbody></table>",
+    "columns": [
+      "Class-count",
+      "11",
+      "6",
+      "5",
+      "4"
+    ],
+    "rows": [
+      {
+        "Class-count": "Caption",
+        "11": "68",
+        "6": "Text",
+        "5": "Text",
+        "4": "Text"
+      },
+      {
+        "Class-count": "Footnote",
+        "11": "71",
+        "6": "Text",
+        "5": "Text",
+        "4": "Text"
+      },
+      {
+        "Class-count": "Formula",
+        "11": "60",
+        "6": "Text",
+        "5": "Text",
+        "4": "Text"
+      },
+      {
+        "Class-count": "List-item",
+        "11": "81",
+        "6": "Text",
+        "5": "82",
+        "4": "Text"
+      },
+      {
+        "Class-count": "Page-footer",
+        "11": "62",
+        "6": "62",
+        "5": "-",
+        "4": "-"
+      },
+      {
+        "Class-count": "Page-header",
+        "11": "72",
+        "6": "68",
+        "5": "-",
+        "4": "-"
+      },
+      {
+        "Class-count": "Picture",
+        "11": "72",
+        "6": "72",
+        "5": "72",
+        "4": "72"
+      },
+      {
+        "Class-count": "Section-header",
+        "11": "68",
+        "6": "67",
+        "5": "69",
+        "4": "68"
+      },
+      {
+        "Class-count": "Table",
+        "11": "82",
+        "6": "83",
+        "5": "82",
+        "4": "82"
+      },
+      {
+        "Class-count": "Text",
+        "11": "85",
+        "6": "84",
+        "5": "84",
+        "4": "84"
+      },
+      {
+        "Class-count": "Title",
+        "11": "77",
+        "6": "Sec.-h.",
+        "5": "Sec.-h.",
+        "4": "Sec.-h."
+      },
+      {
+        "Class-count": "Overall",
+        "11": "72",
+        "6": "73",
+        "5": "78",
+        "4": "77"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_001",
+    "file_name": "doclaynet_document_layout_analysis.pdf",
+    "item_id": "doc_001_item_0097",
+    "table_id": "doc_001_table_004",
+    "page_no": 7,
+    "bbox": {
+      "left": 352.46966552734375,
+      "top": 641.487060546875,
+      "right": 523.3724365234375,
+      "bottom": 485.1275329589844,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_001\\doc_001_item_0097_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_004_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_004_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_004_raw.html",
+    "raw_markdown": "| Class-count Split.   |   11.Doc |   11.Page | 5.Doc   | 5.Page   |\n|:---------------------|---------:|----------:|:--------|:---------|\n| Caption              |       68 |        83 |         |          |\n| Footnote             |       71 |        84 |         |          |\n| Formula              |       60 |        66 |         |          |\n| List-item            |       81 |        88 | 82      | 88       |\n| Page-footer          |       62 |        89 |         |          |\n| Page-header          |       72 |        90 |         |          |\n| Picture              |       72 |        82 | 72      | 82       |\n| Section-header       |       68 |        83 | 69      | 83       |\n| Table                |       82 |        89 | 82      | 90       |\n| Text                 |       85 |        91 | 84      | 90       |\n| Title                |       77 |        81 |         |          |\n| All                  |       72 |        84 | 78      | 87       |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 4: Performance of a Mask R-CNN R50 network with document-wise and page-wise split for different label sets. Naive page-wise split will result in /tildelow 10% point improvement.</div></caption><tbody><tr><td>Class-count Split</td><th colspan=\"2\">11</th><th colspan=\"2\">5</th></tr><tr><td></td><th>Doc</th><th>Page</th><th>Doc</th><th>Page</th></tr><tr><th>Caption</th><td>68</td><td>83</td><td></td><td></td></tr><tr><th>Footnote</th><td>71</td><td>84</td><td></td><td></td></tr><tr><th>Formula</th><td>60</td><td>66</td><td></td><td></td></tr><tr><th>List-item</th><td>81</td><td>88</td><td>82</td><td>88</td></tr><tr><th>Page-footer</th><td>62</td><td>89</td><td></td><td></td></tr><tr><th>Page-header</th><td>72</td><td>90</td><td></td><td></td></tr><tr><th>Picture</th><td>72</td><td>82</td><td>72</td><td>82</td></tr><tr><th>Section-header</th><td>68</td><td>83</td><td>69</td><td>83</td></tr><tr><th>Table</th><td>82</td><td>89</td><td>82</td><td>90</td></tr><tr><th>Text</th><td>85</td><td>91</td><td>84</td><td>90</td></tr><tr><th>Title</th><td>77</td><td>81</td><td></td><td></td></tr><tr><th>All</th><td>72</td><td>84</td><td>78</td><td>87</td></tr></tbody></table>",
+    "columns": [
+      "Class-count Split.",
+      "11.Doc",
+      "11.Page",
+      "5.Doc",
+      "5.Page"
+    ],
+    "rows": [
+      {
+        "Class-count Split.": "Caption",
+        "11.Doc": "68",
+        "11.Page": "83",
+        "5.Doc": "",
+        "5.Page": ""
+      },
+      {
+        "Class-count Split.": "Footnote",
+        "11.Doc": "71",
+        "11.Page": "84",
+        "5.Doc": "",
+        "5.Page": ""
+      },
+      {
+        "Class-count Split.": "Formula",
+        "11.Doc": "60",
+        "11.Page": "66",
+        "5.Doc": "",
+        "5.Page": ""
+      },
+      {
+        "Class-count Split.": "List-item",
+        "11.Doc": "81",
+        "11.Page": "88",
+        "5.Doc": "82",
+        "5.Page": "88"
+      },
+      {
+        "Class-count Split.": "Page-footer",
+        "11.Doc": "62",
+        "11.Page": "89",
+        "5.Doc": "",
+        "5.Page": ""
+      },
+      {
+        "Class-count Split.": "Page-header",
+        "11.Doc": "72",
+        "11.Page": "90",
+        "5.Doc": "",
+        "5.Page": ""
+      },
+      {
+        "Class-count Split.": "Picture",
+        "11.Doc": "72",
+        "11.Page": "82",
+        "5.Doc": "72",
+        "5.Page": "82"
+      },
+      {
+        "Class-count Split.": "Section-header",
+        "11.Doc": "68",
+        "11.Page": "83",
+        "5.Doc": "69",
+        "5.Page": "83"
+      },
+      {
+        "Class-count Split.": "Table",
+        "11.Doc": "82",
+        "11.Page": "89",
+        "5.Doc": "82",
+        "5.Page": "90"
+      },
+      {
+        "Class-count Split.": "Text",
+        "11.Doc": "85",
+        "11.Page": "91",
+        "5.Doc": "84",
+        "5.Page": "90"
+      },
+      {
+        "Class-count Split.": "Title",
+        "11.Doc": "77",
+        "11.Page": "81",
+        "5.Doc": "",
+        "5.Page": ""
+      },
+      {
+        "Class-count Split.": "All",
+        "11.Doc": "72",
+        "11.Page": "84",
+        "5.Doc": "78",
+        "5.Page": "87"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_001",
+    "file_name": "doclaynet_document_layout_analysis.pdf",
+    "item_id": "doc_001_item_0106",
+    "table_id": "doc_001_table_005",
+    "page_no": 8,
+    "bbox": {
+      "left": 72.56598663330078,
+      "top": 619.8484497070312,
+      "right": 274.90240478515625,
+      "bottom": 451.923828125,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_001\\doc_001_item_0106_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_005_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_005_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_001\\doc_001_table_005_raw.html",
+    "raw_markdown": "| Training on     | labels     |   Testing on.PLN | Testing on.DB   |   Testing on.DLN |\n|:----------------|:-----------|-----------------:|:----------------|-----------------:|\n| PubLayNet (PLN) | Figure     |               96 | 43              |               23 |\n| PubLayNet (PLN) | Sec-header |               87 | -               |               32 |\n|                 | Table      |               95 | 24              |               49 |\n|                 | Text       |               96 | -               |               42 |\n|                 | total      |               93 | 34              |               30 |\n| DocBank (DB)    | Figure     |               77 | 71              |               31 |\n| DocBank (DB)    | Table      |               19 | 65              |               22 |\n| DocBank (DB)    | total      |               48 | 68              |               27 |\n| DocLayNet (DLN) | Figure     |               67 | 51              |               72 |\n| DocLayNet (DLN) | Sec-header |               53 | -               |               68 |\n|                 | Table      |               87 | 43              |               82 |\n|                 | Text       |               77 | -               |               84 |\n|                 | total      |               59 | 47              |               78 |",
+    "raw_html": "<table><tbody><tr><td></td><td></td><th colspan=\"3\">Testing on</th></tr><tr><th>Training on</th><th>labels</th><th>PLN</th><th>DB</th><th>DLN</th></tr><tr><th rowspan=\"2\">PubLayNet (PLN)</th><th>Figure</th><td>96</td><td>43</td><td>23</td></tr><tr><th>Sec-header</th><td>87</td><td>-</td><td>32</td></tr><tr><td></td><th>Table</th><td>95</td><td>24</td><td>49</td></tr><tr><td></td><th>Text</th><td>96</td><td>-</td><td>42</td></tr><tr><td></td><th>total</th><td>93</td><td>34</td><td>30</td></tr><tr><th rowspan=\"3\">DocBank (DB)</th><th>Figure</th><td>77</td><td>71</td><td>31</td></tr><tr><th>Table</th><td>19</td><td>65</td><td>22</td></tr><tr><th>total</th><td>48</td><td>68</td><td>27</td></tr><tr><th rowspan=\"2\">DocLayNet (DLN)</th><th>Figure</th><td>67</td><td>51</td><td>72</td></tr><tr><th>Sec-header</th><td>53</td><td>-</td><td>68</td></tr><tr><td></td><th>Table</th><td>87</td><td>43</td><td>82</td></tr><tr><td></td><th>Text</th><td>77</td><td>-</td><td>84</td></tr><tr><td></td><th>total</th><td>59</td><td>47</td><td>78</td></tr></tbody></table>",
+    "columns": [
+      "Training on",
+      "labels",
+      "Testing on.PLN",
+      "Testing on.DB",
+      "Testing on.DLN"
+    ],
+    "rows": [
+      {
+        "Training on": "PubLayNet (PLN)",
+        "labels": "Figure",
+        "Testing on.PLN": "96",
+        "Testing on.DB": "43",
+        "Testing on.DLN": "23"
+      },
+      {
+        "Training on": "PubLayNet (PLN)",
+        "labels": "Sec-header",
+        "Testing on.PLN": "87",
+        "Testing on.DB": "-",
+        "Testing on.DLN": "32"
+      },
+      {
+        "Training on": "",
+        "labels": "Table",
+        "Testing on.PLN": "95",
+        "Testing on.DB": "24",
+        "Testing on.DLN": "49"
+      },
+      {
+        "Training on": "",
+        "labels": "Text",
+        "Testing on.PLN": "96",
+        "Testing on.DB": "-",
+        "Testing on.DLN": "42"
+      },
+      {
+        "Training on": "",
+        "labels": "total",
+        "Testing on.PLN": "93",
+        "Testing on.DB": "34",
+        "Testing on.DLN": "30"
+      },
+      {
+        "Training on": "DocBank (DB)",
+        "labels": "Figure",
+        "Testing on.PLN": "77",
+        "Testing on.DB": "71",
+        "Testing on.DLN": "31"
+      },
+      {
+        "Training on": "DocBank (DB)",
+        "labels": "Table",
+        "Testing on.PLN": "19",
+        "Testing on.DB": "65",
+        "Testing on.DLN": "22"
+      },
+      {
+        "Training on": "DocBank (DB)",
+        "labels": "total",
+        "Testing on.PLN": "48",
+        "Testing on.DB": "68",
+        "Testing on.DLN": "27"
+      },
+      {
+        "Training on": "DocLayNet (DLN)",
+        "labels": "Figure",
+        "Testing on.PLN": "67",
+        "Testing on.DB": "51",
+        "Testing on.DLN": "72"
+      },
+      {
+        "Training on": "DocLayNet (DLN)",
+        "labels": "Sec-header",
+        "Testing on.PLN": "53",
+        "Testing on.DB": "-",
+        "Testing on.DLN": "68"
+      },
+      {
+        "Training on": "",
+        "labels": "Table",
+        "Testing on.PLN": "87",
+        "Testing on.DB": "43",
+        "Testing on.DLN": "82"
+      },
+      {
+        "Training on": "",
+        "labels": "Text",
+        "Testing on.PLN": "77",
+        "Testing on.DB": "-",
+        "Testing on.DLN": "84"
+      },
+      {
+        "Training on": "",
+        "labels": "total",
+        "Testing on.PLN": "59",
+        "Testing on.DB": "47",
+        "Testing on.DLN": "78"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0056",
+    "table_id": "doc_002_table_001",
+    "page_no": 6,
+    "bbox": {
+      "left": 109.2145004272461,
+      "top": 665.2310943603516,
+      "right": 300.9962463378906,
+      "bottom": 578.3787994384766,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0056_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_001_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_001_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_001_raw.html",
+    "raw_markdown": "|             | Model          |   NQ | TQA             |   WQ | CT   |\n|:------------|:---------------|-----:|:----------------|-----:|:-----|\n| Closed Book | T5-11B [52]    | 34.5 | - /50.1 - /60.5 | 37.4 | - -  |\n|             | T5-11B+SSM[52] | 36.6 |                 | 44.7 |      |\n| Open        | REALM [20]     | 40.4 | - / -           | 40.7 | 46.8 |\n| Book        | DPR [26]       | 41.5 | 57.9 / -        | 41.1 | 50.6 |\n|             | RAG-Token      | 44.1 | 55.2/66.1       | 45.5 | 50.0 |\n|             | RAG-Seq.       | 44.5 | 56.8/ 68.0      | 45.2 | 52.2 |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 1: Open-Domain QA Test Scores. For TQA, left column uses the standard test set for OpenDomain QA, right column uses the TQA-Wiki test set. See Appendix D for further details.</div></caption><tbody><tr><td></td><th>Model</th><th>NQ</th><th>TQA</th><th>WQ</th><th>CT</th></tr><tr><th>Closed Book</th><td>T5-11B [52]</td><td>34.5</td><td>- /50.1 - /60.5</td><td>37.4</td><td>- -</td></tr><tr><td></td><td>T5-11B+SSM[52]</td><td>36.6</td><td></td><td>44.7</td><td></td></tr><tr><th>Open</th><td>REALM [20]</td><td>40.4</td><td>- / -</td><td>40.7</td><td>46.8</td></tr><tr><th>Book</th><td>DPR [26]</td><td>41.5</td><td>57.9 / -</td><td>41.1</td><td>50.6</td></tr><tr><td></td><td>RAG-Token</td><td>44.1</td><td>55.2/66.1</td><td>45.5</td><td>50.0</td></tr><tr><td></td><td>RAG-Seq.</td><td>44.5</td><td>56.8/ 68.0</td><td>45.2</td><td>52.2</td></tr></tbody></table>",
+    "columns": [
+      "",
+      "Model",
+      "NQ",
+      "TQA",
+      "WQ",
+      "CT"
+    ],
+    "rows": [
+      {
+        "column_1": "Closed Book",
+        "Model": "T5-11B [52]",
+        "NQ": "34.5",
+        "TQA": "- /50.1 - /60.5",
+        "WQ": "37.4",
+        "CT": "- -"
+      },
+      {
+        "column_1": "",
+        "Model": "T5-11B+SSM[52]",
+        "NQ": "36.6",
+        "TQA": "",
+        "WQ": "44.7",
+        "CT": ""
+      },
+      {
+        "column_1": "Open",
+        "Model": "REALM [20]",
+        "NQ": "40.4",
+        "TQA": "- / -",
+        "WQ": "40.7",
+        "CT": "46.8"
+      },
+      {
+        "column_1": "Book",
+        "Model": "DPR [26]",
+        "NQ": "41.5",
+        "TQA": "57.9 / -",
+        "WQ": "41.1",
+        "CT": "50.6"
+      },
+      {
+        "column_1": "",
+        "Model": "RAG-Token",
+        "NQ": "44.1",
+        "TQA": "55.2/66.1",
+        "WQ": "45.5",
+        "CT": "50.0"
+      },
+      {
+        "column_1": "",
+        "Model": "RAG-Seq.",
+        "NQ": "44.5",
+        "TQA": "56.8/ 68.0",
+        "WQ": "45.2",
+        "CT": "52.2"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0058",
+    "table_id": "doc_002_table_002",
+    "page_no": 6,
+    "bbox": {
+      "left": 310.73834228515625,
+      "top": 656.8029632568359,
+      "right": 502.09393310546875,
+      "bottom": 578.3497924804688,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0058_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_002_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_002_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_002_raw.html",
+    "raw_markdown": "| Model.Model       | Jeopardy.B-1   | Jeopardy.QB-1   | MSMARCO.R-L   | MSMARCO.B-1   |   FVR3.Label | FVR2 Acc..Label   |\n|:------------------|:---------------|:----------------|:--------------|:--------------|-------------:|:------------------|\n| SotA              | -              | -               | 49.8 *        | 49.9 *        |         76.8 | 92.2 *            |\n| BART              | 15.1           | 19.7            | 38.2          | 41.6          |         64   | 81.1              |\n| RAG-Tok. RAG-Seq. | 17.3           | 22.2            | 40.1          | 41.5          |         72.5 | 89.5              |\n|                   | 14.7           | 21.4            | 40.8          | 44.2          |         72.5 | 89.5              |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 2: Generation and classification Test Scores. MS-MARCO SotA is [4], FEVER-3 is [68] and FEVER-2 is [57] *Uses gold context/evidence. Best model without gold access underlined.</div></caption><tbody><tr><th rowspan=\"2\">Model</th><th colspan=\"2\">Jeopardy</th><th colspan=\"2\">MSMARCO</th><th>FVR3</th><th>FVR2 Acc.</th></tr><tr><th>B-1</th><th>QB-1</th><th>R-L</th><th>B-1</th><th colspan=\"2\">Label</th></tr><tr><td>SotA</td><td>-</td><td>-</td><td>49.8 *</td><td>49.9 *</td><td>76.8</td><td>92.2 *</td></tr><tr><td>BART</td><td>15.1</td><td>19.7</td><td>38.2</td><td>41.6</td><td>64.0</td><td>81.1</td></tr><tr><td>RAG-Tok. RAG-Seq.</td><td>17.3</td><td>22.2</td><td>40.1</td><td>41.5</td><td rowspan=\"2\">72.5</td><td rowspan=\"2\">89.5</td></tr><tr><td></td><td>14.7</td><td>21.4</td><td>40.8</td><td>44.2</td></tr></tbody></table>",
+    "columns": [
+      "Model.Model",
+      "Jeopardy.B-1",
+      "Jeopardy.QB-1",
+      "MSMARCO.R-L",
+      "MSMARCO.B-1",
+      "FVR3.Label",
+      "FVR2 Acc..Label"
+    ],
+    "rows": [
+      {
+        "Model.Model": "SotA",
+        "Jeopardy.B-1": "-",
+        "Jeopardy.QB-1": "-",
+        "MSMARCO.R-L": "49.8 *",
+        "MSMARCO.B-1": "49.9 *",
+        "FVR3.Label": "76.8",
+        "FVR2 Acc..Label": "92.2 *"
+      },
+      {
+        "Model.Model": "BART",
+        "Jeopardy.B-1": "15.1",
+        "Jeopardy.QB-1": "19.7",
+        "MSMARCO.R-L": "38.2",
+        "MSMARCO.B-1": "41.6",
+        "FVR3.Label": "64.0",
+        "FVR2 Acc..Label": "81.1"
+      },
+      {
+        "Model.Model": "RAG-Tok. RAG-Seq.",
+        "Jeopardy.B-1": "17.3",
+        "Jeopardy.QB-1": "22.2",
+        "MSMARCO.R-L": "40.1",
+        "MSMARCO.B-1": "41.5",
+        "FVR3.Label": "72.5",
+        "FVR2 Acc..Label": "89.5"
+      },
+      {
+        "Model.Model": "",
+        "Jeopardy.B-1": "14.7",
+        "Jeopardy.QB-1": "21.4",
+        "MSMARCO.R-L": "40.8",
+        "MSMARCO.B-1": "44.2",
+        "FVR3.Label": "72.5",
+        "FVR2 Acc..Label": "89.5"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0070",
+    "table_id": "doc_002_table_003",
+    "page_no": 7,
+    "bbox": {
+      "left": 109.37548828125,
+      "top": 573.4823150634766,
+      "right": 499.80841064453125,
+      "bottom": 441.2829284667969,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0070_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_003_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_003_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_003_raw.html",
+    "raw_markdown": "| Task                           | Input                            | Model            | Generation                                                                                                                                                                                                                                  |\n|:-------------------------------|:---------------------------------|:-----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| MS- MARCO                      | define middle ear                | BART RAG-T RAG-S | ? The middle ear is the part of the ear between the middle ear and the nose. The middle ear is the portion of the ear internal to the eardrum. The middle ear includes the tympanic cavity and the three ossicles.                          |\n| MS- MARCO                      | what currency needed in scotland | BART RAG-T RAG-S | The currency needed in Scotland is Pound sterling. Pound is the currency needed in Scotland. The currency needed in Scotland is the pound sterling.                                                                                         |\n| Jeopardy Question Gener -ation | Washington                       | BART RAG-T RAG-S | ? This state has the largest number of counties in the U.S. It's the only U.S. state named for a U.S. president It's the state where you'll find Mount Rainier National Park                                                                |\n| Jeopardy Question Gener -ation | The Divine Comedy                | BART RAG-T RAG-S | * This epic poem by Dante is divided into 3 parts: the Inferno, the Purgatorio &the Purgatorio Dante's \"Inferno\" is the first part of this epic poem This 14th century work is divided into 3 sections: \"Inferno\", \"Purgatorio\" &\"Paradiso\" |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 3: Examples from generation tasks. RAG models generate more specific and factually accurate responses. &#x27;?&#x27; indicates factually incorrect responses, * indicates partially correct responses.</div></caption><tbody><tr><th>Task</th><th>Input</th><th>Model</th><th>Generation</th></tr><tr><td rowspan=\"2\">MS- MARCO</td><td>define middle ear</td><td>BART RAG-T RAG-S</td><td>? The middle ear is the part of the ear between the middle ear and the nose. The middle ear is the portion of the ear internal to the eardrum. The middle ear includes the tympanic cavity and the three ossicles.</td></tr><tr><td>what currency needed in scotland</td><td>BART RAG-T RAG-S</td><td>The currency needed in Scotland is Pound sterling. Pound is the currency needed in Scotland. The currency needed in Scotland is the pound sterling.</td></tr><tr><td rowspan=\"2\">Jeopardy Question Gener -ation</td><td>Washington</td><td>BART RAG-T RAG-S</td><td>? This state has the largest number of counties in the U.S. It&#x27;s the only U.S. state named for a U.S. president It&#x27;s the state where you&#x27;ll find Mount Rainier National Park</td></tr><tr><td>The Divine Comedy</td><td>BART RAG-T RAG-S</td><td>* This epic poem by Dante is divided into 3 parts: the Inferno, the Purgatorio &amp;the Purgatorio Dante&#x27;s &quot;Inferno&quot; is the first part of this epic poem This 14th century work is divided into 3 sections: &quot;Inferno&quot;, &quot;Purgatorio&quot; &amp;&quot;Paradiso&quot;</td></tr></tbody></table>",
+    "columns": [
+      "Task",
+      "Input",
+      "Model",
+      "Generation"
+    ],
+    "rows": [
+      {
+        "Task": "MS- MARCO",
+        "Input": "define middle ear",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "? The middle ear is the part of the ear between the middle ear and the nose. The middle ear is the portion of the ear internal to the eardrum. The middle ear includes the tympanic cavity and the three ossicles."
+      },
+      {
+        "Task": "MS- MARCO",
+        "Input": "what currency needed in scotland",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "The currency needed in Scotland is Pound sterling. Pound is the currency needed in Scotland. The currency needed in Scotland is the pound sterling."
+      },
+      {
+        "Task": "Jeopardy Question Gener -ation",
+        "Input": "Washington",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "? This state has the largest number of counties in the U.S. It's the only U.S. state named for a U.S. president It's the state where you'll find Mount Rainier National Park"
+      },
+      {
+        "Task": "Jeopardy Question Gener -ation",
+        "Input": "The Divine Comedy",
+        "Model": "BART RAG-T RAG-S",
+        "Generation": "* This epic poem by Dante is divided into 3 parts: the Inferno, the Purgatorio &the Purgatorio Dante's \"Inferno\" is the first part of this epic poem This 14th century work is divided into 3 sections: \"Inferno\", \"Purgatorio\" &\"Paradiso\""
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0078",
+    "table_id": "doc_002_table_004",
+    "page_no": 8,
+    "bbox": {
+      "left": 126.45038604736328,
+      "top": 686.7304916381836,
+      "right": 283.0819091796875,
+      "bottom": 614.7623291015625,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0078_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_004_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_004_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_004_raw.html",
+    "raw_markdown": "|             | Factuality   | Specificity   |\n|:------------|:-------------|:--------------|\n| BART better | 7.1%         | 16.8%         |\n| RAG better  | 42.7%        | 37.4%         |\n| Both good   | 11.7%        | 11.8%         |\n| Both poor   | 17.7%        | 6.9%          |\n| No majority | 20.8%        | 20.1%         |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 4: Human assessments for the Jeopardy Question Generation Task.</div></caption><tbody><tr><td></td><th>Factuality</th><th>Specificity</th></tr><tr><th>BART better</th><td>7.1%</td><td>16.8%</td></tr><tr><th>RAG better</th><td>42.7%</td><td>37.4%</td></tr><tr><th>Both good</th><td>11.7%</td><td>11.8%</td></tr><tr><th>Both poor</th><td>17.7%</td><td>6.9%</td></tr><tr><th>No majority</th><td>20.8%</td><td>20.1%</td></tr></tbody></table>",
+    "columns": [
+      "",
+      "Factuality",
+      "Specificity"
+    ],
+    "rows": [
+      {
+        "column_1": "BART better",
+        "Factuality": "7.1%",
+        "Specificity": "16.8%"
+      },
+      {
+        "column_1": "RAG better",
+        "Factuality": "42.7%",
+        "Specificity": "37.4%"
+      },
+      {
+        "column_1": "Both good",
+        "Factuality": "11.7%",
+        "Specificity": "11.8%"
+      },
+      {
+        "column_1": "Both poor",
+        "Factuality": "17.7%",
+        "Specificity": "6.9%"
+      },
+      {
+        "column_1": "No majority",
+        "Factuality": "20.8%",
+        "Specificity": "20.1%"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0080",
+    "table_id": "doc_002_table_005",
+    "page_no": 8,
+    "bbox": {
+      "left": 309.5849914550781,
+      "top": 682.1633987426758,
+      "right": 503.6162109375,
+      "bottom": 619.9367370605469,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0080_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_005_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_005_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_005_raw.html",
+    "raw_markdown": "|           | MSMARCO   | Jeopardy QGen   |\n|:----------|:----------|:----------------|\n| Gold      | 89.6%     | 90.0%           |\n| BART      | 70.7%     | 32.4%           |\n| RAG-Token | 77.8%     | 46.8%           |\n| RAG-Seq.  | 83.5%     | 53.8%           |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 5: Ratio of distinct to total tri-grams for generation tasks.</div></caption><tbody><tr><td></td><th>MSMARCO</th><th>Jeopardy QGen</th></tr><tr><th>Gold</th><td>89.6%</td><td>90.0%</td></tr><tr><th>BART</th><td>70.7%</td><td>32.4%</td></tr><tr><th>RAG-Token</th><td>77.8%</td><td>46.8%</td></tr><tr><th>RAG-Seq.</th><td>83.5%</td><td>53.8%</td></tr></tbody></table>",
+    "columns": [
+      "",
+      "MSMARCO",
+      "Jeopardy QGen"
+    ],
+    "rows": [
+      {
+        "column_1": "Gold",
+        "MSMARCO": "89.6%",
+        "Jeopardy QGen": "90.0%"
+      },
+      {
+        "column_1": "BART",
+        "MSMARCO": "70.7%",
+        "Jeopardy QGen": "32.4%"
+      },
+      {
+        "column_1": "RAG-Token",
+        "MSMARCO": "77.8%",
+        "Jeopardy QGen": "46.8%"
+      },
+      {
+        "column_1": "RAG-Seq.",
+        "MSMARCO": "83.5%",
+        "Jeopardy QGen": "53.8%"
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0083",
+    "table_id": "doc_002_table_006",
+    "page_no": 8,
+    "bbox": {
+      "left": 107.11054992675781,
+      "top": 577.5243530273438,
+      "right": 516.2279663085938,
+      "bottom": 476.4998779296875,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0083_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_006_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_006_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_006_raw.html",
+    "raw_markdown": "| Model.              |   NQ. |   TQA.Exact Match |   WQ.Exact Match |   CT. |   Jeopardy-QGen.B-1 |   Jeopardy-QGen.QB-1 |   MSMarco.R-L |   MSMarco.B-1 | FVR-3.Label Accuracy   | FVR-2.Label Accuracy   |\n|:--------------------|------:|------------------:|-----------------:|------:|--------------------:|---------------------:|--------------:|--------------:|:-----------------------|:-----------------------|\n| RAG-Token-BM25      |  29.7 |              41.5 |             32.1 |  33.1 |                17.5 |                 22.3 |          55.5 |          48.4 | 75.1                   | 91.6                   |\n| RAG-Sequence-BM25   |  31.8 |              44.1 |             36.6 |  33.8 |                11.1 |                 19.5 |          56.5 |          46.9 |                        |                        |\n| RAG-Token-Frozen    |  37.8 |              50.1 |             37.1 |  51.1 |                16.7 |                 21.7 |          55.9 |          49.4 | 72.9                   | 89.4                   |\n| RAG-Sequence-Frozen |  41.2 |              52.1 |             41.8 |  52.6 |                11.8 |                 19.6 |          56.7 |          47.3 |                        |                        |\n| RAG-Token           |  43.5 |              54.8 |             46.5 |  51.9 |                17.9 |                 22.6 |          56.2 |          49.4 | 74.5                   | 90.6                   |\n| RAG-Sequence        |  44   |              55.8 |             44.9 |  53.4 |                15.3 |                 21.5 |          57.2 |          47.5 |                        |                        |",
+    "raw_html": "<table><tbody><tr><th>Model</th><th>NQ</th><th>TQA</th><th>WQ</th><th>CT</th><th colspan=\"2\">Jeopardy-QGen</th><th colspan=\"2\">MSMarco</th><th>FVR-3</th><th>FVR-2</th></tr><tr><td></td><td></td><th colspan=\"2\">Exact Match</th><td></td><th>B-1</th><th>QB-1</th><th>R-L</th><th>B-1</th><th colspan=\"2\">Label Accuracy</th></tr><tr><th>RAG-Token-BM25</th><td>29.7</td><td>41.5</td><td>32.1</td><td>33.1</td><td>17.5</td><td>22.3</td><td>55.5</td><td>48.4</td><td>75.1</td><td>91.6</td></tr><tr><th>RAG-Sequence-BM25</th><td>31.8</td><td>44.1</td><td>36.6</td><td>33.8</td><td>11.1</td><td>19.5</td><td>56.5</td><td>46.9</td><td></td><td></td></tr><tr><th>RAG-Token-Frozen</th><td>37.8</td><td>50.1</td><td>37.1</td><td>51.1</td><td>16.7</td><td>21.7</td><td>55.9</td><td>49.4</td><td>72.9</td><td>89.4</td></tr><tr><th>RAG-Sequence-Frozen</th><td>41.2</td><td>52.1</td><td>41.8</td><td>52.6</td><td>11.8</td><td>19.6</td><td>56.7</td><td>47.3</td><td></td><td></td></tr><tr><th>RAG-Token</th><td>43.5</td><td>54.8</td><td>46.5</td><td>51.9</td><td>17.9</td><td>22.6</td><td>56.2</td><td>49.4</td><td>74.5</td><td>90.6</td></tr><tr><th>RAG-Sequence</th><td>44.0</td><td>55.8</td><td>44.9</td><td>53.4</td><td>15.3</td><td>21.5</td><td>57.2</td><td>47.5</td><td></td><td></td></tr></tbody></table>",
+    "columns": [
+      "Model.",
+      "NQ.",
+      "TQA.Exact Match",
+      "WQ.Exact Match",
+      "CT.",
+      "Jeopardy-QGen.B-1",
+      "Jeopardy-QGen.QB-1",
+      "MSMarco.R-L",
+      "MSMarco.B-1",
+      "FVR-3.Label Accuracy",
+      "FVR-2.Label Accuracy"
+    ],
+    "rows": [
+      {
+        "Model.": "RAG-Token-BM25",
+        "NQ.": "29.7",
+        "TQA.Exact Match": "41.5",
+        "WQ.Exact Match": "32.1",
+        "CT.": "33.1",
+        "Jeopardy-QGen.B-1": "17.5",
+        "Jeopardy-QGen.QB-1": "22.3",
+        "MSMarco.R-L": "55.5",
+        "MSMarco.B-1": "48.4",
+        "FVR-3.Label Accuracy": "75.1",
+        "FVR-2.Label Accuracy": "91.6"
+      },
+      {
+        "Model.": "RAG-Sequence-BM25",
+        "NQ.": "31.8",
+        "TQA.Exact Match": "44.1",
+        "WQ.Exact Match": "36.6",
+        "CT.": "33.8",
+        "Jeopardy-QGen.B-1": "11.1",
+        "Jeopardy-QGen.QB-1": "19.5",
+        "MSMarco.R-L": "56.5",
+        "MSMarco.B-1": "46.9",
+        "FVR-3.Label Accuracy": "",
+        "FVR-2.Label Accuracy": ""
+      },
+      {
+        "Model.": "RAG-Token-Frozen",
+        "NQ.": "37.8",
+        "TQA.Exact Match": "50.1",
+        "WQ.Exact Match": "37.1",
+        "CT.": "51.1",
+        "Jeopardy-QGen.B-1": "16.7",
+        "Jeopardy-QGen.QB-1": "21.7",
+        "MSMarco.R-L": "55.9",
+        "MSMarco.B-1": "49.4",
+        "FVR-3.Label Accuracy": "72.9",
+        "FVR-2.Label Accuracy": "89.4"
+      },
+      {
+        "Model.": "RAG-Sequence-Frozen",
+        "NQ.": "41.2",
+        "TQA.Exact Match": "52.1",
+        "WQ.Exact Match": "41.8",
+        "CT.": "52.6",
+        "Jeopardy-QGen.B-1": "11.8",
+        "Jeopardy-QGen.QB-1": "19.6",
+        "MSMarco.R-L": "56.7",
+        "MSMarco.B-1": "47.3",
+        "FVR-3.Label Accuracy": "",
+        "FVR-2.Label Accuracy": ""
+      },
+      {
+        "Model.": "RAG-Token",
+        "NQ.": "43.5",
+        "TQA.Exact Match": "54.8",
+        "WQ.Exact Match": "46.5",
+        "CT.": "51.9",
+        "Jeopardy-QGen.B-1": "17.9",
+        "Jeopardy-QGen.QB-1": "22.6",
+        "MSMarco.R-L": "56.2",
+        "MSMarco.B-1": "49.4",
+        "FVR-3.Label Accuracy": "74.5",
+        "FVR-2.Label Accuracy": "90.6"
+      },
+      {
+        "Model.": "RAG-Sequence",
+        "NQ.": "44.0",
+        "TQA.Exact Match": "55.8",
+        "WQ.Exact Match": "44.9",
+        "CT.": "53.4",
+        "Jeopardy-QGen.B-1": "15.3",
+        "Jeopardy-QGen.QB-1": "21.5",
+        "MSMarco.R-L": "57.2",
+        "MSMarco.B-1": "47.5",
+        "FVR-3.Label Accuracy": "",
+        "FVR-2.Label Accuracy": ""
+      }
+    ]
+  },
+  {
+    "doc_id": "doc_002",
+    "file_name": "rag_knowledge_intensive_nlp_tasks.pdf",
+    "item_id": "doc_002_item_0193",
+    "table_id": "doc_002_table_007",
+    "page_no": 19,
+    "bbox": {
+      "left": 172.41233825683594,
+      "top": 698.0461883544922,
+      "right": 437.1000061035156,
+      "bottom": 595.5354614257812,
+      "coord_origin": "BOTTOMLEFT"
+    },
+    "crop_path": "runs\\docintellab_20260513_171649_d61553\\crops\\doc_002\\doc_002_item_0193_table.png",
+    "raw_markdown_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_007_raw.md",
+    "raw_csv_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_007_raw.csv",
+    "raw_html_path": "runs\\docintellab_20260513_171649_d61553\\raw_tables\\doc_002\\doc_002_table_007_raw.html",
+    "raw_markdown": "| Task                         |   Train |   Development | Test    |\n|:-----------------------------|--------:|--------------:|:--------|\n| Natural Questions            |   79169 |          8758 | 3611    |\n| TriviaQA                     |   78786 |          8838 | 11314   |\n| WebQuestions                 |    3418 |           362 | 2033    |\n| CuratedTrec                  |     635 |           134 | 635     |\n| Jeopardy Question Generation |   97392 |         13714 | 26849   |\n| MS-MARCO                     |  153726 |         12468 | 101093* |\n| FEVER-3-way                  |  145450 |         10000 | 10000   |\n| FEVER-2-way                  |   96966 |          6666 | 6666    |",
+    "raw_html": "<table><caption><div class=\"caption\">Table 7: Number of instances in the datasets used. *A hidden subset of this data is used for evaluation</div></caption><tbody><tr><td>Task</td><th>Train</th><th>Development</th><th>Test</th></tr><tr><th>Natural Questions</th><td>79169</td><td>8758</td><td>3611</td></tr><tr><th>TriviaQA</th><td>78786</td><td>8838</td><td>11314</td></tr><tr><th>WebQuestions</th><td>3418</td><td>362</td><td>2033</td></tr><tr><th>CuratedTrec</th><td>635</td><td>134</td><td>635</td></tr><tr><th>Jeopardy Question Generation</th><td>97392</td><td>13714</td><td>26849</td></tr><tr><th>MS-MARCO</th><td>153726</td><td>12468</td><td>101093*</td></tr><tr><th>FEVER-3-way</th><td>145450</td><td>10000</td><td>10000</td></tr><tr><th>FEVER-2-way</th><td>96966</td><td>6666</td><td>6666</td></tr></tbody></table>",
+    "columns": [
+      "Task",
+      "Train",
+      "Development",
+      "Test"
+    ],
+    "rows": [
+      {
+        "Task": "Natural Questions",
+        "Train": "79169",
+        "Development": "8758",
+        "Test": "3611"
+      },
+      {
+        "Task": "TriviaQA",
+        "Train": "78786",
+        "Development": "8838",
+        "Test": "11314"
+      },
+      {
+        "Task": "WebQuestions",
+        "Train": "3418",
+        "Development": "362",
+        "Test": "2033"
+      },
+      {
+        "Task": "CuratedTrec",
+        "Train": "635",
+        "Development": "134",
+        "Test": "635"
+      },
+      {
+        "Task": "Jeopardy Question Generation",
+        "Train": "97392",
+        "Development": "13714",
+        "Test": "26849"
+      },
+      {
+        "Task": "MS-MARCO",
+        "Train": "153726",
+        "Development": "12468",
+        "Test": "101093*"
+      },
+      {
+        "Task": "FEVER-3-way",
+        "Train": "145450",
+        "Development": "10000",
+        "Test": "10000"
+      },
+      {
+        "Task": "FEVER-2-way",
+        "Train": "96966",
+        "Development": "6666",
+        "Test": "6666"
+      }
+    ]
+  }
+]
