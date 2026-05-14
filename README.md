@@ -122,36 +122,3 @@ ollama pull qwen3:14b
 ollama pull llama3.2-vision:latest
 ```
 
-## Git safety
-
-Generated/private files are ignored by default:
-
-```text
-runs/
-data/private/
-.env
-__pycache__/
-*.pyc
-.venv/
-venv/
-*.db
-*.sqlite
-```
-
-Public-safe folders are intentionally kept:
-
-```text
-demo_outputs/
-data/sample_docs/
-assets/screenshots/
-```
-
-## Resume framing
-
-Suggested resume bullet:
-
-> Built a DoclingDocument-centered document intelligence app that routes text, tables, and visual elements through separate LLM/VLM correction workflows before generating structured JSON, Markdown reports, and Excel exports.
-
-## Notes
-
-This is a portfolio demo scaffold. It is designed to be understandable and safe for public GitHub. Do not commit private documents, `.env`, generated `runs/`, API keys, or client-specific workflows.
