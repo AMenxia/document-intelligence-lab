@@ -1,65 +1,34 @@
 {
   "template_name": "grant_program",
-  "display_name": "Grant / Program PDF",
-  "description": "Extracts eligibility, benefits, deadlines, and application steps.",
-  "document_type": "grant or program document",
+  "description": "Template for grants, funding programs, or opportunity documents.",
   "fields": [
     {
       "name": "program_name",
-      "label": "Program name",
-      "required": true,
-      "description": "Name of the grant, program, or opportunity."
+      "description": "Name of grant/program."
     },
     {
-      "name": "sponsoring_organization",
-      "label": "Sponsoring organization",
-      "required": true,
-      "description": "Agency, organization, or funder."
+      "name": "sponsor_or_agency",
+      "description": "Funding agency or sponsor."
     },
     {
       "name": "eligibility",
-      "label": "Eligibility",
-      "required": true,
-      "description": "Who can apply or participate."
+      "description": "Who can apply."
     },
     {
-      "name": "funding_amount_or_benefit",
-      "label": "Funding amount or benefit",
-      "required": false,
-      "description": "Money, services, benefits, or support offered."
+      "name": "funding_amount",
+      "description": "Funding size/range."
     },
     {
       "name": "deadline",
-      "label": "Deadline",
-      "required": true,
-      "description": "Application deadline or important dates."
+      "description": "Deadline or important dates."
     },
     {
-      "name": "application_steps",
-      "label": "Application steps",
-      "required": true,
-      "description": "How to apply."
+      "name": "required_materials",
+      "description": "Application materials required."
     },
     {
-      "name": "required_documents",
-      "label": "Required documents",
-      "required": false,
-      "description": "Documents or materials needed."
-    },
-    {
-      "name": "contact_information",
-      "label": "Contact information",
-      "required": false,
-      "description": "Contact person, email, phone, URL, or office."
+      "name": "evaluation_criteria",
+      "description": "How applications are reviewed."
     }
-  ],
-  "report_sections": [
-    "Program Overview",
-    "Eligibility",
-    "Benefits",
-    "Deadlines",
-    "Application Steps",
-    "Required Documents",
-    "Missing Information"
   ]
 }

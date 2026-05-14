@@ -1,128 +1,157 @@
-# Document Intelligence Lab — Long Demo
+# Document Intelligence Lab
 
-A long-form document intelligence demo for template-based document analysis.
+A Streamlit demo for building a **DoclingDocument-centered document intelligence pipeline**.
 
-This project shows a practical workflow for turning public PDFs and document packets into structured JSON, Markdown reports, and Excel exports.
+This project treats Docling's structured document output as the center of the workflow instead of treating exported Markdown as the main source. The app parses PDFs with Docling, creates a reading-order item manifest, routes tables to a text LLM for structured table correction, routes images/charts to a VLM with optional reviewer notes, rebuilds an LLM-friendly Markdown feed, and exports structured JSON/Excel reports.
 
-## What this app does
-
-```text
-Choose an analysis mode
-Choose an extraction template
-Upload one or more documents
-Run Docling parsing
-Generate Markdown, JSON, layout boxes, and outlined PDFs
-Generate table/image crops
-Human-review useful crops
-Optionally clean selected table crops with a VLM
-Optionally run VLM summaries on selected crops
-Run template-based LLM analysis
-Generate structured_extraction.json
-Generate final_report.md or consolidated_dossier.md
-Preview Excel sheets in Streamlit
-Download formatted Excel workbook
-```
-
-## Analysis modes
+## Core idea
 
 ```text
-Individual Document Analysis
-Consolidated Dossier
+PDF upload
+↓
+Docling parses the PDF
+↓
+DoclingDocument becomes the source map
+↓
+layout_items.json records text/table/picture items in reading order
+↓
+raw table items → text LLM correction → cleaned_tables.json
+↓
+visual items → human notes + VLM review → image_summaries.json
+↓
+file_llm_feed.md is rebuilt from the corrected item sequence
+↓
+structured_extraction.json / report.md / Excel workbook
 ```
 
-### Individual Document Analysis
+## What this demo shows
 
-Each uploaded document is analyzed separately.
+- DoclingDocument-driven parsing
+- Reading-order layout item manifest
+- Table crop previews for human verification
+- Image/chart crop previews for human review
+- Quick skim labels for mostly blank/decorative crops
+- LLM table correction into structured rows + columns
+- Optional human context notes before VLM image/chart review
+- Individual document analysis or consolidated dossier mode
+- Excel preview and export
 
-Best for:
+## Project structure
 
 ```text
-research papers
-event flyers
-grant documents
-generic PDFs
+document-intelligence-lab/
+  app/
+    streamlit_app.py
+  src/docintellab/
+    config.py
+    docling_pipeline.py
+    quick_skim.py
+    ollama_client.py
+    table_corrector.py
+    visual_analyzer.py
+    feed_builder.py
+    extraction.py
+    excel_exporter.py
+    templates.py
+    utils.py
+  templates/
+    generic_document.json
+    research_paper.json
+    grant_program.json
+    event_flyer.json
+    company_overview_public.json
+  data/
+    sample_docs/
+      README.md
+    private/
+      README.md
+  demo_outputs/
+    README.md
+  assets/screenshots/
+    README.md
+  requirements.txt
+  .env.example
+  .gitignore
+  run_app.bat
 ```
-
-### Consolidated Dossier
-
-All uploaded documents are analyzed as one packet. The app first extracts each document, then merges the results into one consolidated dossier.
-
-Best for:
-
-```text
-company document packets
-grant packets
-research packets
-multi-document business analysis
-```
-
-## Included templates
-
-```text
-generic_document
-research_paper
-grant_program
-event_flyer
-company_overview_public
-```
-
-Each run uses one selected template for all uploaded files.
-
-## Default models
-
-```text
-VLM = llama3.2-vision:latest
-LLM = deepseek-r1:8b
-```
-
-The VLM model is used for crop summaries and optional table cleanup because those steps look at crop images.
-
-## Main outputs
-
-```text
-file.md
-file.json
-layout_boxes.json
-outlined_file.pdf
-crop_manifest.json
-selected_crop_manifest.json
-cleaned_tables.json
-vlm_results.json
-structured_extraction.json
-individual_analyses.json
-consolidated_dossier.json
-final_report.md
-consolidated_dossier.md
-source-name_analysis.xlsx
-source-name_dossier.xlsx
-```
-
-## Excel sheets
-
-```text
-overview
-documents
-field_values
-people_or_entities
-visual_evidence
-cleaned_tables
-conflicts_or_notes
-```
-
-The `conflicts_or_notes` sheet appears for Consolidated Dossier mode.
 
 ## Setup
 
 ```bash
+conda create -n docintellab python=3.11 -y
+conda activate docintellab
 pip install -r requirements.txt
+```
+
+Copy `.env.example` to `.env` and update paths/models if needed.
+
+```bash
+cp .env.example .env
+```
+
+On Windows, you can also copy the file manually.
+
+## Run
+
+```bash
 streamlit run app/streamlit_app.py
 ```
 
-Optional Ollama setup:
+Or double-click/run:
 
 ```bash
-ollama pull llama3.2-vision:latest
-ollama pull deepseek-r1:8b
+run_app.bat
 ```
 
+## Ollama models
 
+Default model names are configurable in the app sidebar and `.env.example`.
+
+Recommended local defaults:
+
+```text
+LLM_MODEL=qwen3:14b
+VLM_MODEL=llama3.2-vision:latest
+OLLAMA_URL=http://localhost:11434
+```
+
+Pull models with:
+
+```bash
+ollama pull qwen3:14b
+ollama pull llama3.2-vision:latest
+```
+
+## Git safety
+
+Generated/private files are ignored by default:
+
+```text
+runs/
+data/private/
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+*.sqlite
+```
+
+Public-safe folders are intentionally kept:
+
+```text
+demo_outputs/
+data/sample_docs/
+assets/screenshots/
+```
+
+## Resume framing
+
+Suggested resume bullet:
+
+> Built a DoclingDocument-centered document intelligence app that routes text, tables, and visual elements through separate LLM/VLM correction workflows before generating structured JSON, Markdown reports, and Excel exports.
+
+## Notes
+
+This is a portfolio demo scaffold. It is designed to be understandable and safe for public GitHub. Do not commit private documents, `.env`, generated `runs/`, API keys, or client-specific workflows.

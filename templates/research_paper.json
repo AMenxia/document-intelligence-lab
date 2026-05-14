@@ -1,65 +1,34 @@
 {
   "template_name": "research_paper",
-  "display_name": "Research Paper",
-  "description": "Extracts structured information from academic/research papers.",
-  "document_type": "research paper",
+  "description": "Template for academic/research paper analysis.",
   "fields": [
     {
       "name": "title",
-      "label": "Title",
-      "required": true,
       "description": "Research paper title."
     },
     {
       "name": "authors",
-      "label": "Authors",
-      "required": true,
-      "description": "Authors and affiliations if available."
+      "description": "Authors or research group."
     },
     {
       "name": "research_question",
-      "label": "Research question",
-      "required": true,
-      "description": "The main research question or problem."
+      "description": "Research question or objective."
     },
     {
       "name": "methods",
-      "label": "Methods",
-      "required": true,
-      "description": "Methods, model, experiment design, or approach."
+      "description": "Methods, model, dataset, or experiment design."
     },
     {
-      "name": "dataset_or_subjects",
-      "label": "Dataset or subjects",
-      "required": false,
-      "description": "Data, participants, or materials used."
-    },
-    {
-      "name": "key_findings",
-      "label": "Key findings",
-      "required": true,
-      "description": "Main results and findings."
+      "name": "main_findings",
+      "description": "Main results/findings."
     },
     {
       "name": "limitations",
-      "label": "Limitations",
-      "required": false,
-      "description": "Stated weaknesses or limitations."
+      "description": "Limitations or caveats."
     },
     {
-      "name": "future_work",
-      "label": "Future work",
-      "required": false,
-      "description": "Future research directions."
+      "name": "important_tables",
+      "description": "Important table findings."
     }
-  ],
-  "report_sections": [
-    "Paper Overview",
-    "Research Goal",
-    "Methods",
-    "Findings",
-    "Figures/Tables",
-    "Limitations",
-    "Missing Information"
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "note": "Public-safe placeholder showing expected output types. Replace with your own public demo outputs after running sample PDFs.",
+  "outputs": [
+    "layout_items.json",
+    "raw_tables.json",
+    "cleaned_tables.json",
+    "visual_items.json",
+    "image_summaries.json",
+    "file_llm_feed.md",
+    "structured_extraction.json",
+    "document_intelligence_export.xlsx"
+  ]
+}

@@ -1,71 +1,34 @@
 {
   "template_name": "company_overview_public",
-  "display_name": "Public Company Overview",
-  "description": "Analyzer for public company overviews, annual reports, one-pagers, and business summaries.",
-  "document_type": "public company overview",
+  "description": "Public-safe company overview template for demo documents.",
   "fields": [
     {
-      "name": "organization_name",
-      "label": "Organization name",
-      "required": true,
+      "name": "company_name",
       "description": "Company or organization name."
     },
     {
-      "name": "website",
-      "label": "Website",
-      "required": false,
-      "description": "Company website or public URL."
+      "name": "business_summary",
+      "description": "What the company does."
     },
     {
-      "name": "industry_or_sector",
-      "label": "Industry or sector",
-      "required": true,
-      "description": "Industry, market, or sector."
+      "name": "products_or_services",
+      "description": "Products/services mentioned."
     },
     {
-      "name": "product_or_service",
-      "label": "Product or service",
-      "required": true,
-      "description": "What the organization builds, sells, or provides."
+      "name": "market_or_customers",
+      "description": "Target market/customers."
     },
     {
-      "name": "target_market",
-      "label": "Target market",
-      "required": true,
-      "description": "Customers, users, buyers, or beneficiaries."
-    },
-    {
-      "name": "traction_or_progress",
-      "label": "Traction or progress",
-      "required": true,
-      "description": "Revenue, customers, pilots, partnerships, grants, milestones, or validation."
-    },
-    {
-      "name": "funding_or_support",
-      "label": "Funding or support",
-      "required": false,
-      "description": "Funding, grants, awards, accelerators, or support mentioned."
+      "name": "traction_or_metrics",
+      "description": "Public metrics, milestones, or traction."
     },
     {
       "name": "team_or_leadership",
-      "label": "Team or leadership",
-      "required": true,
-      "description": "Founders, executives, team members, advisors, or key people."
+      "description": "Named team/leadership."
     },
     {
-      "name": "risks_or_missing_info",
-      "label": "Risks or missing information",
-      "required": true,
-      "description": "Unclear, missing, or weak information in the document."
+      "name": "risks_or_open_questions",
+      "description": "Gaps, risks, or unclear points."
     }
-  ],
-  "report_sections": [
-    "Organization Overview",
-    "Product/Service",
-    "Market",
-    "Traction",
-    "Team",
-    "Visual Evidence",
-    "Missing Information"
   ]
 }

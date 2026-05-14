@@ -1,624 +1,372 @@
 from __future__ import annotations
 
+import base64
 import sys
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 import streamlit as st
 
+# Allow running from repo root without installing as package.
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
 
-from src.analysis_runner import (
-    ANALYSIS_MODE_OPTIONS,
-    DOSSIER_MODE,
-    INDIVIDUAL_MODE,
-    run_consolidated_dossier,
-    run_individual_document_analysis,
-    save_blank_analysis_output,
-)
-from src.config import DEFAULT_LLM_MODEL, DEFAULT_VLM_MODEL, OLLAMA_URL, RUNS_DIR, TEMPLATES_DIR
-from src.cropper import update_crop_status, write_selected_manifest
-from src.docling_runner import combine_run_outputs, run_docling_for_file
-from src.excel_exporter import build_excel_export, extraction_to_excel_tables
-from src.file_preview import render_file_preview, render_pdf_path
-from src.report_writer import build_report_from_extraction
-from src.table_cleanup import run_table_cleanup_for_selected_crops, selected_table_crops
-from src.template_loader import blank_structured_extraction, extraction_to_preview_tables, load_templates, template_fields_dataframe
-from src.utils import create_run_dir, ensure_dir, read_json, safe_stem, write_json
-from src.vlm_runner import run_vlm_for_selected_crops
+from docintellab.config import get_config
+from docintellab.docling_pipeline import run_docling_on_files
+from docintellab.excel_exporter import create_excel_export
+from docintellab.extraction import run_extraction
+from docintellab.feed_builder import build_llm_feed
+from docintellab.table_corrector import correct_tables
+from docintellab.templates import list_templates
+from docintellab.utils import now_run_id, read_json, write_json
+from docintellab.visual_analyzer import analyze_visuals, update_visual_notes
+
+st.set_page_config(page_title="Document Intelligence Lab", layout="wide")
 
 
-st.set_page_config(page_title="Document Intelligence Lab", page_icon="📄", layout="wide")
-
-st.title("📄 Document Intelligence Lab")
-st.caption("Template-based document analysis with Docling, human crop review, VLM table cleanup, structured JSON, and Excel export.")
-
-
-# -----------------------------------------------------------------------------
-# Load templates
-# -----------------------------------------------------------------------------
-
-templates = load_templates(TEMPLATES_DIR)
-if not templates:
-    st.error("No templates found in the templates/ folder.")
-    st.stop()
-
-template_options = list(templates.keys())
+def render_pdf(path: Path, height: int = 700) -> None:
+    if not path.exists():
+        st.warning("PDF not found.")
+        return
+    b64 = base64.b64encode(path.read_bytes()).decode("utf-8")
+    st.markdown(
+        f'<embed src="data:application/pdf;base64,{b64}" width="100%" height="{height}" type="application/pdf">',
+        unsafe_allow_html=True,
+    )
 
 
-# -----------------------------------------------------------------------------
-# Sidebar settings
-# -----------------------------------------------------------------------------
+def show_dataframe(data: Any, empty_message: str = "No data yet.") -> None:
+    if not data:
+        st.info(empty_message)
+        return
+    try:
+        st.dataframe(pd.DataFrame(data), use_container_width=True)
+    except Exception:
+        st.json(data)
+
+
+def init_state():
+    if "run_dir" not in st.session_state:
+        st.session_state.run_dir = None
+    if "uploaded_paths" not in st.session_state:
+        st.session_state.uploaded_paths = []
+
+
+init_state()
+config = get_config()
+
+st.title("Document Intelligence Lab")
+st.caption("DoclingDocument-centered parsing → LLM table correction → VLM visual review → structured outputs")
 
 with st.sidebar:
-    st.header("Analysis")
-
-    analysis_mode = st.selectbox(
-        "Analysis Mode",
-        options=ANALYSIS_MODE_OPTIONS,
-        index=0,
-        help="Individual mode analyzes each document separately. Dossier mode combines all documents into one consolidated output.",
-    )
-
-    st.header("Template")
-    selected_template_name = st.selectbox(
-        "Template",
-        options=template_options,
-        format_func=lambda name: templates[name].get("display_name", name),
-    )
-    selected_template = templates[selected_template_name]
-
-    st.caption(selected_template.get("description", ""))
-
+    st.header("Settings")
+    analysis_mode = st.selectbox("Analysis Mode", ["Individual Document Analysis", "Consolidated Dossier"])
+    template_name = st.selectbox("Template", list_templates())
+    llm_model = st.text_input("LLM Model", value=config.llm_model)
+    vlm_model = st.text_input("VLM Model", value=config.vlm_model)
+    ollama_url = st.text_input("Ollama URL", value=config.ollama_url)
+    runs_dir = Path(st.text_input("Runs Directory", value=str(config.runs_dir)))
     st.divider()
+    st.write("Optional switches")
+    use_llm_table_correction = st.toggle("Use LLM table correction", value=True)
+    use_vlm_visual_review = st.toggle("Use VLM visual review", value=True)
 
-    st.header("Models")
-    llm_model = st.text_input("LLM", value=DEFAULT_LLM_MODEL)
-    vlm_model = st.text_input("VLM", value=DEFAULT_VLM_MODEL)
+run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
 
-    st.caption("The VLM model is used for crop summaries and table cleanup.")
-
-    st.divider()
-
-    st.header("Ollama")
-    ollama_url = st.text_input("Ollama URL", value=OLLAMA_URL)
-
-    st.divider()
-
-    st.header("Run Folder")
-    runs_dir = Path(st.text_input("Runs directory", value=str(RUNS_DIR)))
-
-
-# -----------------------------------------------------------------------------
-# Session state
-# -----------------------------------------------------------------------------
-
-defaults = {
-    "uploaded_files_data": [],
-    "run_result": None,
-    "run_dir": None,
-    "doc_results": [],
-    "excel_tables": None,
-    "excel_path": None,
-}
-
-for key, value in defaults.items():
-    if key not in st.session_state:
-        st.session_state[key] = value
-
-
-tabs = st.tabs(
-    [
-        "1) Upload + Template",
-        "2) Run Docling",
-        "3) Crop Review",
-        "4) Table Cleanup",
-        "5) Analysis + Extraction",
-        "6) Excel Preview + Download",
-    ]
-)
-
-
-# -----------------------------------------------------------------------------
-# Tab 1
-# -----------------------------------------------------------------------------
+tabs = st.tabs([
+    "1) Upload + Template",
+    "2) Run Docling",
+    "3) Item Review + Quick Skim",
+    "4) LLM Table Correction",
+    "5) Image / Chart VLM Review",
+    "6) Build LLM Feed",
+    "7) Analysis + Extraction",
+    "8) Excel Preview + Download",
+])
 
 with tabs[0]:
-    st.header("1) Upload + Template")
+    st.subheader("1) Upload + Template")
+    st.write("Upload one or more public-safe PDFs. For GitHub, do not use private/company documents.")
+    uploaded = st.file_uploader("Upload PDFs", type=["pdf"], accept_multiple_files=True)
 
-    mode_col, template_col = st.columns(2)
-    with mode_col:
-        st.subheader("Analysis Mode")
-        st.write(f"**{analysis_mode}**")
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        if st.button("Create new run", type="primary"):
+            new_run = runs_dir / now_run_id("docintellab")
+            input_dir = new_run / "input"
+            input_dir.mkdir(parents=True, exist_ok=True)
+            saved = []
+            for f in uploaded or []:
+                out = input_dir / f.name
+                out.write_bytes(f.getbuffer())
+                saved.append(str(out))
+            st.session_state.run_dir = str(new_run)
+            st.session_state.uploaded_paths = saved
+            st.success(f"Created run: {new_run}")
+    with col2:
+        st.write("Current run:")
+        st.code(str(st.session_state.run_dir or "No run yet"))
+        st.write("Template:", template_name)
+        st.write("Analysis mode:", analysis_mode)
 
-        if analysis_mode == INDIVIDUAL_MODE:
-            st.caption("Each uploaded document is analyzed separately.")
-        else:
-            st.caption("All uploaded documents are combined into one consolidated dossier.")
-
-    with template_col:
-        st.subheader("Selected Template")
-        st.write(f"**{selected_template.get('display_name', selected_template_name)}**")
-        st.caption(selected_template.get("description", ""))
-
-    field_df = template_fields_dataframe(selected_template)
-    st.subheader("Template Fields")
-    st.dataframe(field_df, use_container_width=True, hide_index=True)
-
-    st.subheader("Blank structured output preview")
-    current_source_names = [item["name"] for item in st.session_state.uploaded_files_data]
-    blank = blank_structured_extraction(selected_template, source_files=current_source_names)
-    preview_tables = extraction_to_preview_tables(blank)
-
-    preview_tabs = st.tabs(["overview", "documents", "field_values", "people_or_entities", "visual_evidence"])
-    for tab, sheet_name in zip(preview_tabs, preview_tables.keys()):
-        with tab:
-            st.dataframe(preview_tables[sheet_name], use_container_width=True, hide_index=True)
-
-    st.divider()
-
-    uploaded_files = st.file_uploader(
-        "Upload one or more documents",
-        type=["pdf", "png", "jpg", "jpeg", "webp", "tif", "tiff", "docx", "pptx", "html", "txt", "md"],
-        accept_multiple_files=True,
-    )
-
-    if uploaded_files:
-        st.session_state.uploaded_files_data = [
-            {
-                "name": uploaded_file.name,
-                "type": uploaded_file.type or "application/octet-stream",
-                "bytes": uploaded_file.getvalue(),
-            }
-            for uploaded_file in uploaded_files
-        ]
-
-    if not st.session_state.uploaded_files_data:
-        st.info("Upload one or more documents to start.")
-    else:
-        st.subheader("Uploaded files")
-        for item in st.session_state.uploaded_files_data:
-            with st.expander(item["name"], expanded=len(st.session_state.uploaded_files_data) == 1):
-                st.write(f"File type: `{item['type']}`")
-                st.write(f"Size: `{len(item['bytes']) / 1024:.1f} KB`")
-                render_file_preview(item["type"], item["name"], item["bytes"])
-
-
-# -----------------------------------------------------------------------------
-# Tab 2
-# -----------------------------------------------------------------------------
+    if uploaded:
+        st.markdown("### Uploaded file preview")
+        first = uploaded[0]
+        pdf_b64 = base64.b64encode(first.getvalue()).decode("utf-8")
+        st.markdown(
+            f'<embed src="data:application/pdf;base64,{pdf_b64}" width="100%" height="500" type="application/pdf">',
+            unsafe_allow_html=True,
+        )
 
 with tabs[1]:
-    st.header("2) Run Docling")
-
-    if not st.session_state.uploaded_files_data:
-        st.info("Upload files first.")
+    st.subheader("2) Run Docling")
+    st.write("This creates raw Docling outputs, layout_items.json, raw_tables.json, visual_items.json, crops, and outlined PDFs.")
+    run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
+    if not run_dir:
+        st.warning("Create a run first.")
     else:
-        st.write("Current run settings:")
-        st.code(f"Analysis Mode: {analysis_mode}\nTemplate: {selected_template_name}")
+        input_paths = [Path(p) for p in st.session_state.uploaded_paths]
+        if not input_paths:
+            st.warning("No uploaded PDF paths found in this run.")
+        else:
+            st.write("Input files:")
+            for p in input_paths:
+                st.code(str(p))
+            if st.button("Run Docling parser", type="primary"):
+                with st.spinner("Running Docling..."):
+                    try:
+                        manifest = run_docling_on_files(input_paths, run_dir)
+                        st.success("Docling parsing completed.")
+                        st.json(manifest)
+                    except Exception as exc:
+                        st.error(str(exc))
 
-        if st.button("Run Docling for all files", type="primary", use_container_width=True):
-            ensure_dir(runs_dir)
-            source_names = [item["name"] for item in st.session_state.uploaded_files_data]
-            run_dir = create_run_dir(runs_dir, source_names, selected_template_name)
-            input_dir = run_dir / "input"
-            output_dir = run_dir / "outputs"
-
-            settings = {
-                "analysis_mode": analysis_mode,
-                "template_name": selected_template_name,
-                "llm_model": llm_model,
-                "vlm_model": vlm_model,
-                "ollama_url": ollama_url,
-                "source_files": source_names,
-            }
-            write_json(run_dir / "settings.json", settings)
-            write_json(output_dir / "selected_template.json", selected_template)
-
-            doc_results = []
-
-            with st.spinner("Running Docling on uploaded files..."):
-                for idx, item in enumerate(st.session_state.uploaded_files_data, start=1):
-                    doc_id = f"doc_{idx:03d}"
-                    suffix = Path(item["name"]).suffix or ".bin"
-                    input_path = input_dir / f"{doc_id}_{safe_stem(item['name'])}{suffix}"
-                    input_path.write_bytes(item["bytes"])
-
-                    doc_output_dir = output_dir / doc_id
-                    result = run_docling_for_file(
-                        input_path=input_path,
-                        output_dir=doc_output_dir,
-                        doc_id=doc_id,
-                        original_file_name=item["name"],
-                    )
-                    doc_results.append(result)
-
-                combined = combine_run_outputs(output_dir, doc_results)
-
-                save_blank_analysis_output(
-                    selected_template,
-                    doc_results,
-                    output_dir,
-                    analysis_mode,
-                )
-
-            st.session_state.run_dir = str(run_dir)
-            st.session_state.doc_results = doc_results
-            st.session_state.run_result = {
-                "run_dir": str(run_dir),
-                "output_dir": str(output_dir),
-                "analysis_mode": analysis_mode,
-                "settings": settings,
-                **combined,
-            }
-            st.session_state.excel_tables = None
-            st.session_state.excel_path = None
-
-            st.success("Docling finished for all files.")
-
-        if st.session_state.run_result:
-            result = st.session_state.run_result
-
-            st.subheader("Run outputs")
-
-            summary_rows = []
-            for doc_result in st.session_state.doc_results:
-                summary_rows.append(
-                    {
-                        "doc_id": doc_result["doc_id"],
-                        "file_name": doc_result["file_name"],
-                        "boxes": doc_result["box_count"],
-                        "crops": doc_result["crop_count"],
-                        "markdown_path": doc_result["markdown_path"],
-                        "outlined_pdf_path": doc_result["outlined_pdf_path"],
-                    }
-                )
-            st.dataframe(pd.DataFrame(summary_rows), use_container_width=True, hide_index=True)
-
-            st.subheader("Individual outlined PDF previews")
-            st.caption("Each document gets its own outlined_file.pdf preview.")
-
-            for doc_result in st.session_state.doc_results:
-                with st.expander(f"{doc_result['doc_id']} — {doc_result['file_name']}", expanded=True):
-                    outlined_path = Path(doc_result["outlined_pdf_path"]) if doc_result.get("outlined_pdf_path") else None
-                    markdown_path = Path(doc_result["markdown_path"])
-                    json_path = Path(doc_result["json_path"])
-
-                    if outlined_path and outlined_path.exists():
-                        st.subheader("outlined_file.pdf")
-                        render_pdf_path(outlined_path, height=850)
-
-                        st.download_button(
-                            "Download outlined_file.pdf",
-                            data=outlined_path.read_bytes(),
-                            file_name=f"{doc_result['doc_id']}_outlined_file.pdf",
-                            mime="application/pdf",
-                            key=f"download_pdf_{doc_result['doc_id']}",
-                            use_container_width=True,
-                        )
-                    else:
-                        st.warning("No outlined PDF was created for this document.")
-
-                    col1, col2 = st.columns(2)
-
-                    if markdown_path.exists():
-                        col1.download_button(
-                            "Download file.md",
-                            data=markdown_path.read_bytes(),
-                            file_name=f"{doc_result['doc_id']}_file.md",
-                            mime="text/markdown",
-                            key=f"download_md_{doc_result['doc_id']}",
-                            use_container_width=True,
-                        )
-
-                    if json_path.exists():
-                        col2.download_button(
-                            "Download file.json",
-                            data=json_path.read_bytes(),
-                            file_name=f"{doc_result['doc_id']}_file.json",
-                            mime="application/json",
-                            key=f"download_json_{doc_result['doc_id']}",
-                            use_container_width=True,
-                        )
-
-                    with st.expander("Preview Markdown", expanded=False):
-                        if markdown_path.exists():
-                            st.text_area(
-                                "file.md",
-                                value=markdown_path.read_text(encoding="utf-8", errors="replace"),
-                                height=300,
-                                key=f"md_preview_{doc_result['doc_id']}",
-                            )
-
-
-# -----------------------------------------------------------------------------
-# Tab 3
-# -----------------------------------------------------------------------------
+        manifest = read_json(run_dir / "run_manifest.json", default=None)
+        if manifest:
+            st.markdown("### Outlined PDF Preview")
+            docs = manifest.get("documents", [])
+            labels = [d.get("file_name", d.get("doc_id")) for d in docs]
+            if docs:
+                choice = st.selectbox("Choose outlined PDF", labels)
+                idx = labels.index(choice)
+                outlined = docs[idx].get("outlined_pdf_path")
+                if outlined:
+                    render_pdf(Path(outlined), height=650)
+                else:
+                    st.info("Outlined PDF was not created. This can happen if bbox extraction failed for this Docling version.")
 
 with tabs[2]:
-    st.header("3) Crop Review")
-
-    result = st.session_state.run_result
-    if not result:
-        st.info("Run Docling first.")
+    st.subheader("3) DoclingDocument Item Review + Quick Skim")
+    run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
+    if not run_dir or not (run_dir / "layout_items.json").exists():
+        st.warning("Run Docling first.")
     else:
-        output_dir = Path(result["output_dir"])
-        manifest_path = output_dir / "crop_manifest.json"
-        manifest = read_json(manifest_path, fallback=[])
+        layout_items = read_json(run_dir / "layout_items.json", default=[])
+        st.write(f"Detected items: {len(layout_items)}")
+        c1, c2, c3 = st.columns(3)
+        with c1:
+            type_filter = st.multiselect("Item types", sorted(set(i.get("item_type") for i in layout_items)), default=[])
+        with c2:
+            skim_filter = st.multiselect("Quick skim", sorted(set((i.get("quick_skim") or {}).get("label") for i in layout_items if i.get("quick_skim"))), default=[])
+        with c3:
+            page_filter = st.text_input("Page contains", value="")
+        filtered = layout_items
+        if type_filter:
+            filtered = [i for i in filtered if i.get("item_type") in type_filter]
+        if skim_filter:
+            filtered = [i for i in filtered if (i.get("quick_skim") or {}).get("label") in skim_filter]
+        if page_filter.strip():
+            filtered = [i for i in filtered if str(i.get("page_no")) == page_filter.strip()]
 
-        if not manifest:
-            st.info("No crops were generated.")
-        else:
-            status_filter = st.radio(
-                "Filter",
-                options=["all", "keep", "discard", "needs_review", "error"],
-                horizontal=True,
-            )
-
-            visible = manifest if status_filter == "all" else [item for item in manifest if item.get("status") == status_filter]
-            st.write(f"Showing `{len(visible)}` of `{len(manifest)}` crops.")
-
-            if st.button("Mark all needs_review crops as keep", use_container_width=True):
-                for item in manifest:
-                    if item.get("status") == "needs_review":
-                        item["status"] = "keep"
-                write_json(manifest_path, manifest)
-                write_selected_manifest(output_dir, manifest)
-                st.success("Updated selected_crop_manifest.json.")
-                st.rerun()
-
-            for item in visible:
-                crop_path_value = item.get("crop_path")
-                with st.container(border=True):
-                    col_img, col_meta = st.columns([1, 2])
-
-                    with col_img:
-                        if crop_path_value and Path(crop_path_value).exists():
-                            st.image(crop_path_value, caption=item.get("crop_id"), use_container_width=True)
-                        else:
-                            st.warning("Crop image missing.")
-
-                    with col_meta:
-                        st.write(f"**{item.get('crop_id')}**")
-                        st.write(f"Document: `{item.get('doc_id')}` — `{item.get('file_name')}`")
-                        st.write(f"Page: `{item.get('page_no')}`")
-                        st.write(f"Type: `{item.get('group')}:{item.get('label')}`")
-                        st.write(f"Status: `{item.get('status')}`")
-                        if item.get("text_preview"):
-                            st.caption(item.get("text_preview"))
-
-                        c1, c2, c3 = st.columns(3)
-                        if c1.button("Keep", key=f"keep_{item.get('crop_id')}"):
-                            update_crop_status(output_dir, manifest, item.get("crop_id"), "keep")
-                            st.rerun()
-                        if c2.button("Discard", key=f"discard_{item.get('crop_id')}"):
-                            update_crop_status(output_dir, manifest, item.get("crop_id"), "discard")
-                            st.rerun()
-                        if c3.button("Needs review", key=f"review_{item.get('crop_id')}"):
-                            update_crop_status(output_dir, manifest, item.get("crop_id"), "needs_review")
-                            st.rerun()
-
-            with st.expander("Preview selected_crop_manifest.json", expanded=False):
-                st.json(read_json(output_dir / "selected_crop_manifest.json", fallback=[]))
-
-
-# -----------------------------------------------------------------------------
-# Tab 4
-# -----------------------------------------------------------------------------
+        updated = False
+        for item in filtered[:100]:
+            with st.expander(f"{item.get('reading_order_index')} | {item.get('item_type')} | {item.get('item_id')} | page {item.get('page_no')}"):
+                cols = st.columns([1, 2])
+                with cols[0]:
+                    crop = item.get("crop_path")
+                    if crop and Path(crop).exists():
+                        st.image(crop, caption="Crop preview", use_container_width=True)
+                    skim = item.get("quick_skim")
+                    if skim:
+                        st.write("Quick skim:", skim.get("label"))
+                        st.caption(skim.get("reason", ""))
+                    status_options = ["keep", "discard", "needs_review"]
+                    if item.get("item_type") == "table":
+                        status_options = ["keep", "discard", "needs_correction", "corrected"]
+                    new_status = st.selectbox(
+                        "Human status",
+                        status_options,
+                        index=status_options.index(item.get("human_status")) if item.get("human_status") in status_options else 0,
+                        key=f"status_{item.get('item_id')}",
+                    )
+                    note = st.text_area("Human note", value=item.get("human_note", ""), key=f"note_{item.get('item_id')}")
+                    if new_status != item.get("human_status") or note != item.get("human_note", ""):
+                        item["human_status"] = new_status
+                        item["human_note"] = note
+                        updated = True
+                with cols[1]:
+                    st.write("Text/raw preview")
+                    st.text_area("", value=item.get("text", "")[:4000], height=200, key=f"text_{item.get('item_id')}", disabled=True)
+                    st.json({k: item.get(k) for k in ["doc_id", "file_name", "page_no", "bbox", "label"]})
+        if updated:
+            if st.button("Save item review updates"):
+                write_json(run_dir / "layout_items.json", layout_items)
+                # Mirror visual item notes/status by item_id.
+                visual_items = read_json(run_dir / "visual_items.json", default=[])
+                by_item = {i.get("item_id"): i for i in layout_items}
+                for v in visual_items:
+                    src = by_item.get(v.get("item_id"))
+                    if src:
+                        v["human_status"] = src.get("human_status", v.get("human_status"))
+                        v["human_note"] = src.get("human_note", v.get("human_note", ""))
+                write_json(run_dir / "visual_items.json", visual_items)
+                st.success("Saved review updates.")
 
 with tabs[3]:
-    st.header("4) Table Cleanup")
-
-    result = st.session_state.run_result
-    if not result:
-        st.info("Run Docling first.")
+    st.subheader("4) LLM Table Correction")
+    run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
+    if not run_dir or not (run_dir / "raw_tables.json").exists():
+        st.warning("Run Docling first.")
     else:
-        output_dir = Path(result["output_dir"])
-        selected_manifest = read_json(output_dir / "selected_crop_manifest.json", fallback=[])
-        table_crops = selected_table_crops(selected_manifest)
-
-        st.write(f"Selected table crops available for cleanup: `{len(table_crops)}`")
-        st.caption("This step uses the selected VLM model because table crops are images.")
-
-        if table_crops:
-            with st.expander("Preview table crops selected for cleanup", expanded=False):
-                for item in table_crops:
-                    st.write(f"**{item.get('crop_id')}** — {item.get('file_name')} page {item.get('page_no')}")
-                    crop_path = item.get("crop_path")
-                    if crop_path and Path(crop_path).exists():
-                        st.image(crop_path, use_container_width=True)
-
-        if st.button("Run table cleanup on selected table crops", type="primary", use_container_width=True):
-            if not table_crops:
-                st.warning("No selected table crops found. Mark table crops as keep or needs_review first.")
-            else:
-                with st.spinner("Running table cleanup through Ollama..."):
-                    cleaned_tables = run_table_cleanup_for_selected_crops(
-                        selected_manifest=selected_manifest,
-                        output_dir=output_dir,
-                        model=vlm_model,
-                        ollama_url=ollama_url,
-                    )
-                st.success(f"Table cleanup finished for {len(cleaned_tables)} table crops.")
-
-        cleaned_tables_path = output_dir / "cleaned_tables.json"
-        if cleaned_tables_path.exists():
-            cleaned_tables = read_json(cleaned_tables_path, fallback=[])
-            st.subheader("cleaned_tables.json")
-            st.json(cleaned_tables)
-
-            st.download_button(
-                "Download cleaned_tables.json",
-                data=cleaned_tables_path.read_bytes(),
-                file_name="cleaned_tables.json",
-                mime="application/json",
-                use_container_width=True,
-            )
-        else:
-            st.info("No cleaned_tables.json yet.")
-
-
-# -----------------------------------------------------------------------------
-# Tab 5
-# -----------------------------------------------------------------------------
+        raw_tables = read_json(run_dir / "raw_tables.json", default=[])
+        st.write(f"Raw tables found: {len(raw_tables)}")
+        selected_tables = st.multiselect("Tables to correct", [t.get("table_id") for t in raw_tables], default=[t.get("table_id") for t in raw_tables])
+        for table in raw_tables:
+            with st.expander(f"{table.get('table_id')} | {table.get('file_name')} | page {table.get('page_no')}"):
+                cols = st.columns([1, 2])
+                with cols[0]:
+                    crop = table.get("crop_path")
+                    if crop and Path(crop).exists():
+                        st.image(crop, caption="Table crop preview", use_container_width=True)
+                with cols[1]:
+                    st.markdown("Raw Docling table preview")
+                    st.text_area("Raw table markdown", value=table.get("raw_markdown", "")[:6000], height=220, key=f"rawtable_{table.get('table_id')}")
+        if st.button("Run table correction", type="primary"):
+            with st.spinner("Correcting tables..."):
+                cleaned = correct_tables(run_dir, llm_model=llm_model, ollama_url=ollama_url, table_ids=selected_tables, use_llm=use_llm_table_correction)
+                st.success(f"Created cleaned_tables.json with {len(cleaned)} table(s).")
+        cleaned_tables = read_json(run_dir / "cleaned_tables.json", default=[])
+        if cleaned_tables:
+            st.markdown("### Cleaned table preview")
+            for table in cleaned_tables:
+                st.write(f"**{table.get('table_id')}** — {table.get('caption','')}")
+                show_dataframe(table.get("rows", []), empty_message="No rows in this cleaned table.")
+                if table.get("issues"):
+                    st.caption("Issues: " + "; ".join(map(str, table.get("issues"))))
 
 with tabs[4]:
-    st.header("5) Analysis + Extraction")
-
-    result = st.session_state.run_result
-    if not result:
-        st.info("Run Docling first.")
+    st.subheader("5) Image / Chart VLM Review")
+    st.write("Add optional human context notes before sending visual crops to the VLM.")
+    run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
+    if not run_dir or not (run_dir / "visual_items.json").exists():
+        st.warning("Run Docling first.")
     else:
-        output_dir = Path(result["output_dir"])
-        selected_manifest = read_json(output_dir / "selected_crop_manifest.json", fallback=[])
-
-        active_mode = result.get("analysis_mode", analysis_mode)
-
-        st.subheader("Current analysis mode")
-        st.write(f"**{active_mode}**")
-
-        st.write(f"Selected crops available for VLM: `{len(selected_manifest)}`")
-
-        if st.button("Run VLM on selected crops", use_container_width=True):
-            if not selected_manifest:
-                st.warning("No selected crops found.")
-            else:
-                with st.spinner("Running VLM on selected crops through Ollama..."):
-                    vlm_results = run_vlm_for_selected_crops(
-                        selected_manifest=selected_manifest,
-                        output_dir=output_dir,
-                        model=vlm_model,
-                        ollama_url=ollama_url,
+        visual_items = read_json(run_dir / "visual_items.json", default=[])
+        st.write(f"Visual items found: {len(visual_items)}")
+        updates = {}
+        selected_visuals = []
+        for item in visual_items:
+            with st.expander(f"{item.get('visual_id')} | {item.get('file_name')} | page {item.get('page_no')}"):
+                cols = st.columns([1, 2])
+                with cols[0]:
+                    crop = item.get("crop_path")
+                    if crop and Path(crop).exists():
+                        st.image(crop, caption="Visual crop", use_container_width=True)
+                    st.write("Quick skim:", (item.get("quick_skim") or {}).get("label", "none"))
+                    status = st.selectbox(
+                        "Status",
+                        ["keep", "discard", "needs_review"],
+                        index=["keep", "discard", "needs_review"].index(item.get("human_status")) if item.get("human_status") in ["keep", "discard", "needs_review"] else 0,
+                        key=f"visual_status_{item.get('visual_id')}",
                     )
-                st.success(f"VLM finished for {len(vlm_results)} crops.")
-
-        with st.expander("Preview vlm_results.json", expanded=False):
-            st.json(read_json(output_dir / "vlm_results.json", fallback=[]))
-
-        with st.expander("Preview cleaned_tables.json used by extraction", expanded=False):
-            st.json(read_json(output_dir / "cleaned_tables.json", fallback=[]))
-
-        st.divider()
-
-        if st.button("Save blank structured output from selected template", use_container_width=True):
-            extraction = save_blank_analysis_output(selected_template, st.session_state.doc_results, output_dir, active_mode)
-            st.success("Blank structured output saved.")
-            st.json(extraction)
-
-        if active_mode == DOSSIER_MODE:
-            run_label = "Run Consolidated Dossier"
-            run_caption = "Extract each document first, then merge all results into one dossier."
-        else:
-            run_label = "Run Individual Document Analysis"
-            run_caption = "Analyze each uploaded document separately."
-
-        st.caption(run_caption)
-
-        if st.button(run_label, type="primary", use_container_width=True):
-            with st.spinner("Running analysis through Ollama..."):
-                try:
-                    if active_mode == DOSSIER_MODE:
-                        extraction = run_consolidated_dossier(
-                            template=selected_template,
-                            doc_results=st.session_state.doc_results,
-                            output_dir=output_dir,
-                            model=llm_model,
-                            ollama_url=ollama_url,
-                        )
-                    else:
-                        extraction = run_individual_document_analysis(
-                            template=selected_template,
-                            doc_results=st.session_state.doc_results,
-                            output_dir=output_dir,
-                            model=llm_model,
-                            ollama_url=ollama_url,
-                        )
-                    report = build_report_from_extraction(output_dir)
-                    st.success("Analysis finished.")
-                    st.json(extraction)
-                    with st.expander("Preview report", expanded=False):
-                        st.text_area("report", value=report, height=500)
-                except Exception as error:
-                    st.error("Analysis failed.")
-                    st.exception(error)
-
-        structured_path = output_dir / "structured_extraction.json"
-        if structured_path.exists():
-            st.subheader("Current structured_extraction.json")
-            st.json(read_json(structured_path, fallback={}))
-
-        dossier_path = output_dir / "consolidated_dossier.json"
-        if dossier_path.exists():
-            st.subheader("Current consolidated_dossier.json")
-            st.json(read_json(dossier_path, fallback={}))
-
-
-# -----------------------------------------------------------------------------
-# Tab 6
-# -----------------------------------------------------------------------------
+                    run_this = st.checkbox("Run VLM on this visual", value=status in {"keep", "needs_review"}, key=f"run_vlm_{item.get('visual_id')}")
+                    if run_this:
+                        selected_visuals.append(item.get("visual_id"))
+                with cols[1]:
+                    note = st.text_area("Reviewer note for VLM context", value=item.get("human_note", ""), key=f"visual_note_{item.get('visual_id')}")
+                    st.text_area("Nearby text", value=item.get("nearby_text", "")[:3000], height=160, disabled=True, key=f"nearby_{item.get('visual_id')}")
+                    updates[item.get("visual_id")] = {"human_status": status, "human_note": note}
+        if st.button("Save visual notes/statuses"):
+            update_visual_notes(run_dir, updates)
+            st.success("Saved visual notes/statuses.")
+        if st.button("Run VLM on selected visuals", type="primary", disabled=not use_vlm_visual_review):
+            update_visual_notes(run_dir, updates)
+            with st.spinner("Running VLM..."):
+                summaries = analyze_visuals(run_dir, vlm_model=vlm_model, ollama_url=ollama_url, visual_ids=selected_visuals)
+                st.success(f"Created image_summaries.json with {len(summaries)} summaries.")
+        summaries = read_json(run_dir / "image_summaries.json", default=[])
+        if summaries:
+            st.markdown("### Image summary preview")
+            show_dataframe(summaries)
 
 with tabs[5]:
-    st.header("6) Excel Preview + Download")
-
-    result = st.session_state.run_result
-    if not result:
-        st.info("Run Docling first.")
+    st.subheader("6) Build LLM Feed")
+    run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
+    if not run_dir or not (run_dir / "layout_items.json").exists():
+        st.warning("Run Docling first.")
     else:
-        output_dir = Path(result["output_dir"])
-        structured_path = output_dir / "structured_extraction.json"
+        if st.button("Build file_llm_feed.md", type="primary"):
+            feed = build_llm_feed(run_dir)
+            st.success("Built file_llm_feed.md")
+            st.text_area("Feed preview", value=feed[:15000], height=500)
+        feed_path = run_dir / "file_llm_feed.md"
+        if feed_path.exists():
+            feed_text = feed_path.read_text(encoding="utf-8")
+            st.download_button("Download file_llm_feed.md", data=feed_text, file_name="file_llm_feed.md")
+            st.text_area("Current feed", value=feed_text[:15000], height=500)
 
-        if not structured_path.exists():
-            st.info("No structured_extraction.json found yet. Save a blank template or run extraction first.")
-        else:
-            extraction = read_json(structured_path, fallback={})
+with tabs[6]:
+    st.subheader("7) Analysis + Extraction")
+    run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
+    if not run_dir or not (run_dir / "file_llm_feed.md").exists():
+        st.warning("Build the LLM feed first.")
+    else:
+        if st.button("Run analysis/extraction", type="primary"):
+            with st.spinner("Running extraction..."):
+                result = run_extraction(run_dir, template_name=template_name, analysis_mode=analysis_mode, llm_model=llm_model, ollama_url=ollama_url)
+                st.success("Extraction complete.")
+                st.json(result)
+        dossier = read_json(run_dir / "consolidated_dossier.json", default=None)
+        extraction = read_json(run_dir / "structured_extraction.json", default=None)
+        result = dossier or extraction
+        if result:
+            st.markdown("### Extraction preview")
+            st.write(result.get("short_summary", ""))
+            show_dataframe(result.get("field_values", []))
 
-            st.subheader("Excel sheet preview")
-            tables = extraction_to_excel_tables(extraction, output_dir)
-
-            sheet_names = list(tables.keys())
-            sheet_tabs = st.tabs(sheet_names)
-            for tab, sheet_name in zip(sheet_tabs, sheet_names):
-                with tab:
-                    st.dataframe(tables[sheet_name], use_container_width=True, hide_index=True)
-
-            if st.button("Generate Excel Export", type="primary", use_container_width=True):
-                try:
-                    excel_path, tables = build_excel_export(output_dir, extraction)
-                    st.session_state.excel_path = str(excel_path)
-                    st.session_state.excel_tables = tables
-                    st.success(f"Excel export created: {excel_path.name}")
-                except Exception as error:
-                    st.error("Excel export failed.")
-                    st.exception(error)
-
-            excel_path = Path(st.session_state.excel_path) if st.session_state.excel_path else None
-            if excel_path and excel_path.exists():
-                st.download_button(
-                    "Download Excel workbook",
-                    data=excel_path.read_bytes(),
-                    file_name=excel_path.name,
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    use_container_width=True,
-                )
-
-            report_path = output_dir / "final_report.md"
-            if report_path.exists():
-                st.download_button(
-                    "Download final_report.md",
-                    data=report_path.read_bytes(),
-                    file_name="final_report.md",
-                    mime="text/markdown",
-                    use_container_width=True,
-                )
-
-            dossier_report_path = output_dir / "consolidated_dossier.md"
-            if dossier_report_path.exists():
-                st.download_button(
-                    "Download consolidated_dossier.md",
-                    data=dossier_report_path.read_bytes(),
-                    file_name="consolidated_dossier.md",
-                    mime="text/markdown",
-                    use_container_width=True,
-                )
+with tabs[7]:
+    st.subheader("8) Excel Preview + Download")
+    run_dir = Path(st.session_state.run_dir) if st.session_state.run_dir else None
+    if not run_dir:
+        st.warning("Create a run first.")
+    else:
+        if st.button("Generate Excel workbook", type="primary"):
+            out = create_excel_export(run_dir)
+            st.success(f"Created {out.name}")
+        excel_path = run_dir / "document_intelligence_export.xlsx"
+        if excel_path.exists():
+            st.download_button(
+                "Download Excel workbook",
+                data=excel_path.read_bytes(),
+                file_name="document_intelligence_export.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        st.markdown("### Preview key output tables")
+        output_choice = st.selectbox("Preview", ["cleaned_tables", "field_values", "image_summaries", "layout_items"])
+        if output_choice == "cleaned_tables":
+            cleaned_tables = read_json(run_dir / "cleaned_tables.json", default=[])
+            rows = []
+            for table in cleaned_tables:
+                for i, row in enumerate(table.get("rows", []) or [], start=1):
+                    rows.append({"table_id": table.get("table_id"), "row_number": i, **row})
+            show_dataframe(rows)
+        elif output_choice == "field_values":
+            result = read_json(run_dir / "consolidated_dossier.json", default=None) or read_json(run_dir / "structured_extraction.json", default={})
+            show_dataframe(result.get("field_values", []) if isinstance(result, dict) else [])
+        elif output_choice == "image_summaries":
+            show_dataframe(read_json(run_dir / "image_summaries.json", default=[]))
+        elif output_choice == "layout_items":
+            show_dataframe(read_json(run_dir / "layout_items.json", default=[]))
